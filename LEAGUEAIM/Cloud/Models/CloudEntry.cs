@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
+using Script_Engine.Cloud.Models.Enums;
 using System.Text;
 
 namespace Script_Engine.Cloud
 {
-	public class CloudEntry
+    public class CloudEntry
 	{
 		[JsonProperty("type")]
 		public string Type { get; set; }

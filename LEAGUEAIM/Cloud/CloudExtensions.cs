@@ -1,6 +1,8 @@
-﻿namespace Script_Engine.Cloud
+﻿using Script_Engine.Cloud.Models.Enums;
+
+namespace Script_Engine.Cloud
 {
-	internal static class CloudExtensions
+    internal static class CloudExtensions
 	{
 		public static string Folder(this CloudEntryType type) => type switch
 		{

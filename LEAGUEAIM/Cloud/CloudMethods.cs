@@ -1,11 +1,12 @@
 ﻿using LEAGUEAIM;
 using Newtonsoft.Json;
+using Script_Engine.Cloud.Models.Enums;
 using Script_Engine.Utilities;
 using System.Text;
 
 namespace Script_Engine.Cloud
 {
-	internal class CloudMethods
+    internal class CloudMethods
 	{
 		readonly static string endpoint = "http://auth.leagueaim.gg/cloud";
 		public static List<CloudEntry> RetrieveFiles(string type)
