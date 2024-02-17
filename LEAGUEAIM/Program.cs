@@ -35,8 +35,6 @@ namespace LEAGUEAIM
 
 			Recoil.CreatePatternsDirectory();
 
-			// Functions.CheckForUpdates();
-
 			_XF = new(_Config);
 
 			try
@@ -46,7 +44,6 @@ namespace LEAGUEAIM
 			catch
 			{
 				_ = MessageBox.Show("Failed to get screen size, defaulting to 1920x1080.", "LEAGUEAIM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
 				ScreenSize = new Size(1920, 1080);
 			}
 
