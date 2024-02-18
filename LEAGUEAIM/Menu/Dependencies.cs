@@ -9,19 +9,19 @@ namespace LEAGUEAIM.Utilities
 		{
 			{
 				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "Rubik.ttf"),
-				"http://auth.leagueaim.gg/assets/ai/Rubik.ttf"
+				$"{Settings.API.BaseUri}/assets/ai/Rubik.ttf"
 			},
 			{
 				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "Inter.ttf"),
-				"http://auth.leagueaim.gg/assets/ai/Inter.ttf"
+				$"{Settings.API.BaseUri}/assets/ai/Inter.ttf"
 			},
 			{
 				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "SharpGrotesk.ttf"),
-				"http://auth.leagueaim.gg/assets/ai/SharpGrotesk.ttf"
+				$"{Settings.API.BaseUri}/assets/ai/SharpGrotesk.ttf"
 			},
 			{
 				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "FontAwesome.ttf"),
-				"http://auth.leagueaim.gg/assets/ai/FontAwesome.ttf"
+				$"{Settings.API.BaseUri}/assets/ai/FontAwesome.ttf"
 			} 
 		};
 		public static void Run()

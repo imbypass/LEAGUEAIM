@@ -201,7 +201,7 @@ namespace Script_Engine.Utilities
 			public static bool LoaderOpened()
 			{
 				using HttpClient hc = new(new HttpClientHandler() { Proxy = null, UseProxy = false });
-				hc.BaseAddress = new Uri("https://leagueaim.gg");
+				hc.BaseAddress = new Uri(Settings.API.BaseUri);
 				var content = new FormUrlEncodedContent(new[]
 				{
 				new KeyValuePair<string, string>("FUNC", "loaderOpened"),
@@ -217,7 +217,7 @@ namespace Script_Engine.Utilities
 				if (Program._XFUser.Username == "bypass") return true;
 
 				using HttpClient hc = new(new HttpClientHandler() { Proxy = null, UseProxy = false });
-				hc.BaseAddress = new Uri("https://leagueaim.gg");
+				hc.BaseAddress = new Uri(Settings.API.BaseUri);
 				var content = new FormUrlEncodedContent(new[]
 				{
 				new KeyValuePair<string, string>("FUNC", "userLoggedIn"),

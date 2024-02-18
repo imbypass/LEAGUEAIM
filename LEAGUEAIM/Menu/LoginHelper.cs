@@ -270,7 +270,7 @@ namespace LEAGUEAIM
             string remotePath = Program._XFUser.Links.AvatarSmall.Split("?")[0];
 
             if (remotePath == null || remotePath == string.Empty)
-                remotePath = "http://auth.leagueaim.gg/forum/default.png";
+                remotePath = $"{Settings.API.BaseUri}/forum/default.png";
 
             using HttpClient hc = new(new HttpClientHandler() { Proxy = null, UseProxy = false });
             using HttpResponseMessage response = hc.GetAsync(remotePath).Result;

@@ -10,7 +10,9 @@ namespace LEAGUEAIM.Features
 		public static Keys[] MenuKeys =
 		{
 			Keys.Insert,
-			Keys.End
+			Keys.End,
+			Keys.F1,
+			Keys.F2
 		};
 		public static void UpdateHotkeyList()
 		{
@@ -30,7 +32,9 @@ namespace LEAGUEAIM.Features
 		private static readonly string[] MenuOptions =
 		[
 			"Toggle Menu",
-			"Terminate"
+			"Terminate",
+			"Toggle Recoil",
+			"Toggle Rapidfire",
 		];
 
 		public override void Render()
@@ -47,6 +51,12 @@ namespace LEAGUEAIM.Features
 						break;
 					case 1:
 						MenuKeys[Settings.Menu.CurrentKeybind] = Keys.End;
+						break;
+					case 2:
+						MenuKeys[Settings.Menu.CurrentKeybind] = Keys.F1;
+						break;
+					case 3:
+						MenuKeys[Settings.Menu.CurrentKeybind] = Keys.F2;
 						break;
 				}
 			}
@@ -79,6 +89,14 @@ namespace LEAGUEAIM.Features
 				{
 					Interception.Unload();
 					Environment.Exit(0);
+				}
+				if (User32.GetAsyncKeyState(Keybinds.MenuKeys[2]))
+				{
+					Recoil.Instance.Enabled = !Recoil.Instance.Enabled;
+				}
+				if (User32.GetAsyncKeyState(Keybinds.MenuKeys[3]))
+				{
+					Rapidfire.Instance.Enabled = !Rapidfire.Instance.Enabled;
 				}
 				Keybinds.Instance.Run();
 				Thread.Sleep(150);

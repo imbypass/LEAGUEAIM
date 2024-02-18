@@ -12,7 +12,7 @@ namespace LEAGUEAIM
 		public static LARenderer Renderer;
 		public static DateTime StartTime;
 		public static Size ScreenSize;
-		public static readonly XenForoConfig _Config = new("http://auth.leagueaim.gg/forum/x-api/", Settings.API.ClientId, Settings.API.ClientSecret);
+		public static readonly XenForoConfig _Config = new($"{Settings.API.BaseUri}/forum/x-api/", Settings.API.ClientId, Settings.API.ClientSecret);
 		public static XenForoApi _XF;
 		public static User _XFUser;
 
@@ -55,7 +55,9 @@ namespace LEAGUEAIM
 
 			Settings.Engine.HasGhub = Logitech.Driver.Open();
 
-			Renderer = new(Scrambled(), false);
+			string RandomizedTitle = Functions.RandomString(18, true, false);
+			Renderer = new(RandomizedTitle, false);
+
 			Renderer.Start().Wait();
 			Renderer.Size = ScreenSize;
 
@@ -70,10 +72,6 @@ namespace LEAGUEAIM
 			}.Start();
 
 			AntiTamper.PostLaunch();
-		}
-		public static string Scrambled()
-		{
-			return Functions.RandomString(18, true, false);
 		}
 		public static void CheckElevated()
 		{

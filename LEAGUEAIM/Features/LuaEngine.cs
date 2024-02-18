@@ -22,7 +22,7 @@ namespace LEAGUEAIM.Features
 		{
 			if (!Directory.Exists(Location)) Directory.CreateDirectory(Location);
 
-			string[] profiles = Array.Empty<string>();
+			string[] profiles = [];
 			string[] files = Directory.GetFiles(Location);
 			foreach (string file in files)
 			{
@@ -116,9 +116,9 @@ namespace LEAGUEAIM.Features
 				ImGui.SameLine();
 				ImGui.TextColored(Settings.Colors.AccentColor, $"{Settings.Lua.ScriptName}");
 			}
-			if (ImGui.ListBox("###SCRIPTS", ref Settings.Lua.CurrentScript, LuaEngine.ScriptList, LuaEngine.ScriptList.Length, 4))
+			if (ImGui.ListBox("###SCRIPTS", ref Settings.Lua.CurrentScript, ScriptList, ScriptList.Length, 4))
 			{
-				Settings.Lua.ScriptName = LuaEngine.ScriptList[Settings.Lua.CurrentScript];
+				Settings.Lua.ScriptName = ScriptList[Settings.Lua.CurrentScript];
 			}
 			string activeState = (Settings.Lua.Enabled ? "Deactivate" : "Activate");
 			if (ImGui.Button($"{activeState} Script", new Vector2(240, 30)))
@@ -129,13 +129,13 @@ namespace LEAGUEAIM.Features
 
 					if (Settings.Lua.Enabled)
 					{
-						LuaEngine.Load();
-						LEAGUEAIM.Engine.LuaThread = new Thread(LuaEngine.Run) { IsBackground = true };
+						Load();
+						LEAGUEAIM.Engine.LuaThread = new Thread(Run) { IsBackground = true };
 						LEAGUEAIM.Engine.LuaThread.Start();
 					}
 					else
 					{
-						LuaEngine.Unload();
+						Unload();
 						LEAGUEAIM.Engine.LuaThread.Interrupt();
 						LEAGUEAIM.Engine.LuaThread = null;
 					}
@@ -824,7 +824,7 @@ namespace LEAGUEAIM.Features
 		{
 			switch (key.ToLower())
 			{
-				case "alt": return VirtualInput.GetAsyncKeyState(System.Windows.Forms.Keys.LMenu) || VirtualInput.GetAsyncKeyState(System.Windows.Forms.Keys.RMenu);
+				case "alt": return VirtualInput.GetAsyncKeyState(Keys.LMenu) || VirtualInput.GetAsyncKeyState(System.Windows.Forms.Keys.RMenu);
 				case "lalt": return VirtualInput.GetAsyncKeyState(System.Windows.Forms.Keys.LMenu);
 				case "ralt": return VirtualInput.GetAsyncKeyState(System.Windows.Forms.Keys.RMenu);
 				case "ctrl": return VirtualInput.GetAsyncKeyState(System.Windows.Forms.Keys.LControlKey) || VirtualInput.GetAsyncKeyState(System.Windows.Forms.Keys.RControlKey);
@@ -1047,7 +1047,7 @@ namespace LEAGUEAIM.Features
 		public void Popup(string message, string title = null)
 		{
 			if (title != null)
-				MessageBox.Show(message, String.Format("LEAGUEAIM - {0}", title), MessageBoxButtons.OK);
+				MessageBox.Show(message, string.Format("LEAGUEAIM - {0}", title), MessageBoxButtons.OK);
 			else
 				MessageBox.Show(message, "LEAGUEAIM", MessageBoxButtons.OK);
 		}

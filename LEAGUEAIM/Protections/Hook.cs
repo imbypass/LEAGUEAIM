@@ -32,8 +32,8 @@ namespace LEAGUEAIM.Protections
 		private static IntPtr LowLevelGetProcAddress(IntPtr hModule, string Function)
 		{
 			IntPtr FunctionHandle = IntPtr.Zero;
-			Structs.UNICODE_STRING UnicodeString = new Structs.UNICODE_STRING();
-			Structs.ANSI_STRING AnsiString = new Structs.ANSI_STRING();
+			Structs.UNICODE_STRING UnicodeString = new();
+			Structs.ANSI_STRING AnsiString = new();
 			RtlInitUnicodeString(out UnicodeString, Function);
 			RtlUnicodeStringToAnsiString(out AnsiString, UnicodeString, true);
 			LdrGetProcedureAddress(hModule, AnsiString, 0, out FunctionHandle);

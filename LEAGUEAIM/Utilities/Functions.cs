@@ -1,5 +1,4 @@
-﻿using LEAGUEAIM.Features;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Script_Engine.Cloud;
 using Script_Engine.Utilities;
 using System.Diagnostics;
@@ -10,6 +9,7 @@ namespace LEAGUEAIM.Utilities
 {
 	internal class Functions
 	{
+		private static readonly Random random = new();
 		public static bool IsAdministrator => new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
 		public static void RestartElevated()
 		{
@@ -23,7 +23,6 @@ namespace LEAGUEAIM.Utilities
 			Process.Start(startInfo);
 			Environment.Exit(0);
 		}
-		private static readonly Random random = new();
 		public static string RandomString(int length, bool useUppercase = true, bool useLowercase = true, bool useNumbers = true)
 		{
 			if (!useLowercase && !useUppercase && !useNumbers)
@@ -37,7 +36,7 @@ namespace LEAGUEAIM.Utilities
 		public static void CheckForUpdates()
 		{
 			Logger.WriteLine("Checking for updates..");
-			string versionFile = $"http://auth.leagueaim.gg/versions/{Settings.Product.ProductName}.txt";
+			string versionFile = $"{Settings.API.BaseUri}/versions/{Settings.Product.ProductName}.txt";
 			using HttpClient hc = new(new HttpClientHandler() { Proxy = null, UseProxy = false });
 			using HttpResponseMessage response = hc.GetAsync(versionFile).Result;
 			using HttpContent content = response.Content;
@@ -67,7 +66,6 @@ namespace LEAGUEAIM.Utilities
 
 			Environment.Exit(0);
 		}
-
 		public static void ImportPattern(string pattern)
 		{
 			// filetype|id
@@ -90,7 +88,6 @@ namespace LEAGUEAIM.Utilities
 
 			Environment.Exit(0);
 		}
-
 		public static void CreateUrlScheme()
 		{
 			Logger.DebugLine("Creating URL scheme..");
@@ -104,7 +101,6 @@ namespace LEAGUEAIM.Utilities
 
 			return;
 		}
-
 		public static void CheckForImport(string[] args)
 		{
 			if (args.Length == 0) return;
@@ -117,8 +113,6 @@ namespace LEAGUEAIM.Utilities
 				pattern = pattern.TrimEnd('/');
 
 				ImportPattern(pattern);
-
-				//Environment.Exit(0);
 			}
 		}
 	}

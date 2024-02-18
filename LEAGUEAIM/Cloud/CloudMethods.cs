@@ -8,7 +8,7 @@ namespace Script_Engine.Cloud
 {
     internal class CloudMethods
 	{
-		readonly static string endpoint = "http://auth.leagueaim.gg/cloud";
+		readonly static string endpoint = $"{Settings.API.BaseUri}/cloud";
 		public static List<CloudEntry> RetrieveFiles(string type)
 		{
 			// create an HttpClient to send a post request and retrieve the data as as tring

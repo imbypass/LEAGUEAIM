@@ -76,8 +76,6 @@ namespace LEAGUEAIM
 			style.Colors[(int)ImGuiCol.PopupBg] = new Vector4(0f, 0f, 0f, 1.00f);
 			style.Colors[(int)ImGuiCol.ChildBg] = new Vector4(0f, 0f, 0f, 1.00f);
 			style.Colors[(int)ImGuiCol.BorderShadow] = new Vector4(0.92f, 0.91f, 0.88f, 1.00f);
-			style.Colors[(int)ImGuiCol.FrameBgHovered] = new Vector4(0.2f, 0.2f, 0.2f, 1.00f);
-			style.Colors[(int)ImGuiCol.FrameBgActive] = new Vector4(0.5f, 0.5f, 0.5f, 1.00f);
 			style.Colors[(int)ImGuiCol.ScrollbarBg] = new Vector4(0.10f, 0.09f, 0.12f, 0f);
 			style.Colors[(int)ImGuiCol.ScrollbarGrabHovered] = new Vector4(0.56f, 0.56f, 0.58f, 0f);
 			style.Colors[(int)ImGuiCol.ScrollbarGrabActive] = new Vector4(0.06f, 0.05f, 0.07f, 0f);
@@ -85,16 +83,22 @@ namespace LEAGUEAIM
 			style.Colors[(int)ImGuiCol.SliderGrabActive] = new Vector4(0.06f, 0.05f, 0.07f, 1.00f);
 			style.Colors[(int)ImGuiCol.ButtonHovered] = new Vector4(0.24f, 0.23f, 0.29f, 1.00f);
 			style.Colors[(int)ImGuiCol.ButtonActive] = new Vector4(0.56f, 0.56f, 0.58f, 1.00f);
-			style.Colors[(int)ImGuiCol.TabActive] = new Vector4(0.16f, 0.15f, 0.15f, 1.00f);
-			style.Colors[(int)ImGuiCol.TabHovered] = new Vector4(0.26f, 0.25f, 0.25f, 1.00f);
 			style.Colors[(int)ImGuiCol.ModalWindowDimBg] = new Vector4(0.06f, 0.06f, 0.06f, 0.6f);
-
 			style.Colors[(int)ImGuiCol.WindowBg] = Settings.Colors.BgColor;
-			style.Colors[(int)ImGuiCol.FrameBg] = Settings.Colors.FrameColor;
-			style.Colors[(int)ImGuiCol.Tab] = Settings.Colors.FrameColor;
-			style.Colors[(int)ImGuiCol.Text] = Settings.Colors.TextColor;
+
 			Vector4 tCol = Settings.Colors.TextColor;
+			style.Colors[(int)ImGuiCol.Text] = tCol;
 			style.Colors[(int)ImGuiCol.TextDisabled] = new Vector4(tCol.X, tCol.Y, tCol.Z, 0.3f);
+
+			Vector4 fCol = Settings.Colors.FrameColor;
+			style.Colors[(int)ImGuiCol.FrameBg] = fCol;
+			style.Colors[(int)ImGuiCol.FrameBgHovered] = new Vector4(fCol.X, fCol.Y, fCol.Z, 0.4f);
+			style.Colors[(int)ImGuiCol.FrameBgActive] = new Vector4(fCol.X, fCol.Y, fCol.Z, 0.8f);
+
+			Vector4 bCol = Settings.Colors.FrameColor;
+			style.Colors[(int)ImGuiCol.Tab] = bCol;
+			style.Colors[(int)ImGuiCol.TabActive] = new Vector4(bCol.X, bCol.Y, bCol.Z, 0.2f);
+			style.Colors[(int)ImGuiCol.TabHovered] = new Vector4(bCol.X, bCol.Y, bCol.Z, 0.4f);
 
 		}
 		public static void ApplyAccentColor()

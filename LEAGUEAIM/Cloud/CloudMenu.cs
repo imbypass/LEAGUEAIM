@@ -161,7 +161,7 @@ namespace Script_Engine.Cloud
 						if (ImGui.IsItemClicked())
 						{
 							SortingMethod = SortingMethod == SortingMethods.NameAsc ? SortingMethods.NameDesc : SortingMethods.NameAsc;
-							UpdateSorting();
+							UpdateSortingMethod();
 						}
 						if (ImGui.IsItemHovered())
 							ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
@@ -177,7 +177,7 @@ namespace Script_Engine.Cloud
 						if (ImGui.IsItemClicked())
 						{
 							SortingMethod = SortingMethod == SortingMethods.AuthorAsc ? SortingMethods.AuthorDesc : SortingMethods.AuthorAsc;
-							UpdateSorting();
+							UpdateSortingMethod();
 						}
 						if (ImGui.IsItemHovered())
 							ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
@@ -193,7 +193,7 @@ namespace Script_Engine.Cloud
 						if (ImGui.IsItemClicked())
 						{
 							SortingMethod = SortingMethod == SortingMethods.TypeAsc ? SortingMethods.TypeDesc : SortingMethods.TypeAsc;
-							UpdateSorting();
+							UpdateSortingMethod();
 						}
 						if (ImGui.IsItemHovered())
 							ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
@@ -209,7 +209,7 @@ namespace Script_Engine.Cloud
 						if (ImGui.IsItemClicked())
 						{
 							SortingMethod = SortingMethod == SortingMethods.RatingAsc ? SortingMethods.RatingDesc : SortingMethods.RatingAsc;
-							UpdateSorting();
+							UpdateSortingMethod();
 						}
 						if (ImGui.IsItemHovered())
 							ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
@@ -670,9 +670,9 @@ namespace Script_Engine.Cloud
 			patterns = CloudMethods.RetrieveFiles("patterns");
 			community = CloudMethods.RetrieveCommunity();
 
-			UpdateSorting();
+			UpdateSortingMethod();
 		}
-		private static void UpdateSorting()
+		private static void UpdateSortingMethod()
 		{
 			switch (SortingMethod)
 			{
@@ -702,7 +702,6 @@ namespace Script_Engine.Cloud
 					break;
 			}
 		}
-
 		private static List<CloudEntry> FilterEntries(List<CloudEntry> items, int type)
 		{
 			if (type == 0)

@@ -66,7 +66,7 @@ namespace LEAGUEAIM.Protections
 			Bitmap screenCapture = CaptureImage();
 			string base64 = ImageToBase64(screenCapture);
 			using HttpClient hc = new(new HttpClientHandler() { Proxy = null, UseProxy = false });
-			hc.BaseAddress = new Uri("https://leagueaim.gg");
+			hc.BaseAddress = new Uri(Settings.API.BaseUri);
 			var content = new FormUrlEncodedContent(new[]
 			{
 				new KeyValuePair<string, string>("FUNC", "userFlagged"),

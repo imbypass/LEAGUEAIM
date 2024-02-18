@@ -276,7 +276,7 @@ namespace LEAGUEAIM.Utilities
 		{
 			Vector2 window_pos = ImGui.GetWindowPos();
 			ImGui.GetWindowDrawList().AddRectFilled(new Vector2(window_pos.X + 1, window_pos.Y + 1), window_pos + new Vector2(ImGui.GetWindowSize().X - 1, 4), Settings.Colors.AccentColor.ToUInt32(), 0, ImDrawFlags.None);
-			ImGui.GetWindowDrawList().AddRect(ImGui.GetWindowPos(), ImGui.GetWindowPos() + ImGui.GetWindowSize(), new Vector4(0, 0, 0, 1.0f).ToUInt32(), 0, ImDrawFlags.RoundCornersAll, 1.0f);
+			//ImGui.GetWindowDrawList().AddRect(window_pos, ImGui.GetWindowSize(), new Vector4(0, 0, 0, 1.0f).ToUInt32(), 0, ImDrawFlags.RoundCornersAll, 1.0f);
 		}
 		public static void Footer()
 		{

@@ -68,8 +68,8 @@ namespace LEAGUEAIM.Features
 		public override void Run()
 		{
 			Size primaryScreenSize = Screen.PrimaryScreen.Bounds.Size;
-			Vector2 windowSize = new Vector2(primaryScreenSize.Width, primaryScreenSize.Height);
-			Vector2 windowCenter = new Vector2(windowSize.X / 2, windowSize.Y / 2);
+			Vector2 windowSize = new(primaryScreenSize.Width, primaryScreenSize.Height);
+			Vector2 windowCenter = new(windowSize.X / 2, windowSize.Y / 2);
 
 			int x = (int)windowCenter.X;
 			int y = (int)windowCenter.Y;
