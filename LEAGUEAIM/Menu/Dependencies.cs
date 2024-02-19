@@ -1,5 +1,4 @@
 ﻿using Script_Engine.Utilities;
-using System.Net.Http;
 
 namespace LEAGUEAIM.Utilities
 {
@@ -10,10 +9,6 @@ namespace LEAGUEAIM.Utilities
 			{
 				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "Rubik.ttf"),
 				$"{Settings.API.BaseUri}/assets/ai/Rubik.ttf"
-			},
-			{
-				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "Inter.ttf"),
-				$"{Settings.API.BaseUri}/assets/ai/Inter.ttf"
 			},
 			{
 				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "SharpGrotesk.ttf"),

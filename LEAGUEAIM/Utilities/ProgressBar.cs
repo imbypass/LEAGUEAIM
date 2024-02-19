@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using System;
+﻿using System.Text;
 using Timer = System.Threading.Timer;
 
 namespace LEAGUEAIM.Utilities
@@ -71,11 +69,11 @@ namespace LEAGUEAIM.Utilities
 			}
 
 			// Backtrack to the first differing character
-			StringBuilder outputBuilder = new StringBuilder();
+			StringBuilder outputBuilder = new();
 			outputBuilder.Append('\b', currentText.Length - commonPrefixLength);
 
 			// Output new suffix
-			outputBuilder.Append(text.Substring(commonPrefixLength));
+			outputBuilder.Append(text[commonPrefixLength..]);
 
 			// If the new text is shorter than the old one: delete overlapping characters
 			int overlapCount = currentText.Length - text.Length;

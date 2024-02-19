@@ -68,7 +68,6 @@ namespace LEAGUEAIM
 			public static int CurrentScript = 0;
 			public static int CurrentConfig = -1;
 			public static string NewConfigName = "New Profile";
-			public static bool DeleteConfig = true;
 		}
 	}
 }
