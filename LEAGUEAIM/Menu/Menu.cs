@@ -70,13 +70,6 @@ namespace LEAGUEAIM
 								ImGui.EndTabItem();
 							}
 
-							//if (ImGui.BeginTabItem("AutoGrenade"))
-							//{
-							//	AutoNade.Instance.Render();
-
-							//	ImGui.EndTabItem();
-							//}
-
 							if (ImGui.BeginTabItem("Crosshair"))
 							{
 								Crosshair.Instance.Render();
