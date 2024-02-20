@@ -4,7 +4,6 @@ using Script_Engine.Cloud;
 using Script_Engine.Utilities;
 using System.Diagnostics;
 using System.Numerics;
-using static LEAGUEAIM.Features.Recoil;
 
 namespace LEAGUEAIM.Features
 {

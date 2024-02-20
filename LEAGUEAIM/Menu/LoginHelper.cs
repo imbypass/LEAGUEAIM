@@ -150,8 +150,9 @@ namespace LEAGUEAIM
                 string localHwid = WindowsIdentity.GetCurrent().User.Value;
 
                 bool isBanned = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == "Banned");
-                bool isRegistered = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == "Registered");
-                bool isSubscribed = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == Product.ProductName);
+				bool isRegistered = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == "Registered");
+				bool isCustomer = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == "Customer");
+				bool isSubscribed = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == Product.ProductName);
 
                 if (Program._XFUser == null)
                 {
@@ -175,17 +176,25 @@ namespace LEAGUEAIM
                     Logger.ErrorLine(Response);
                     ImGui.OpenPopup("Login Error");
                     return;
-                }
+				}
 
-                if (!isSubscribed)
-                {
-                    Response = "No active subscription found.";
-                    Logger.ErrorLine(Response);
-                    ImGui.OpenPopup("Login Error");
-                    return;
-                }
+				if (!isCustomer)
+				{
+					Response = "No active subscription found.";
+					Logger.ErrorLine(Response);
+					ImGui.OpenPopup("Login Error");
+					return;
+				}
 
-                if (!isRegistered)
+				if (!isSubscribed)
+				{
+					Response = "No active subscription found.";
+					Logger.ErrorLine(Response);
+					ImGui.OpenPopup("Login Error");
+					return;
+				}
+
+				if (!isRegistered)
                 {
                     Response = "Account not found.";
                     Logger.ErrorLine(Response);
@@ -240,11 +249,13 @@ namespace LEAGUEAIM
 
                         bool isRegistered = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == "Registered");
 
-                        bool isSubscribed = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == Product.ProductName);
+						bool isCustomer = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == "Customer");
+
+						bool isSubscribed = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == Product.ProductName);
 
                         bool hwidMatches = remoteHwid == localHwid;
 
-                        if (isRegistered && isSubscribed && hwidMatches && !isBanned)
+                        if (isRegistered && isSubscribed && isCustomer && hwidMatches && !isBanned)
                             return;
 
                         Environment.Exit(0);
@@ -273,7 +284,8 @@ namespace LEAGUEAIM
                 remotePath = $"{Settings.API.BaseUri}/forum/default.png";
 
             using HttpClient hc = new(new HttpClientHandler() { Proxy = null, UseProxy = false });
-            using HttpResponseMessage response = hc.GetAsync(remotePath).Result;
+			hc.DefaultRequestHeaders.UserAgent.ParseAdd($"LEAGUEAIM/{Settings.Product.Version}");
+			using HttpResponseMessage response = hc.GetAsync(remotePath).Result;
             using HttpContent content = response.Content;
             using Stream stream = content.ReadAsStreamAsync().Result;
             using FileStream fs = new(localPath, FileMode.Create, FileAccess.Write);

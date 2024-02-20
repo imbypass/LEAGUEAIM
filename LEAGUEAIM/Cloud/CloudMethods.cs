@@ -13,6 +13,7 @@ namespace Script_Engine.Cloud
 		{
 			// create an HttpClient to send a post request and retrieve the data as as tring
 			using HttpClient client = new();
+			client.DefaultRequestHeaders.UserAgent.ParseAdd($"LEAGUEAIM/{Settings.Product.Version}");
 			// create a new form url encoded content
 			var content = new FormUrlEncodedContent(new[]
 			{
@@ -53,6 +54,7 @@ namespace Script_Engine.Cloud
 		{
 			// create an HttpClient to send a post request and retrieve the data as as tring
 			using HttpClient client = new();
+			client.DefaultRequestHeaders.UserAgent.ParseAdd($"LEAGUEAIM/{Settings.Product.Version}");
 			// create a new form url encoded content
 			var content = new FormUrlEncodedContent(new[]
 			{
@@ -88,6 +90,7 @@ namespace Script_Engine.Cloud
 		{
 			// create an HttpClient to send a post request and retrieve the data as as tring
 			using HttpClient client = new();
+			client.DefaultRequestHeaders.UserAgent.ParseAdd($"LEAGUEAIM/{Settings.Product.Version}");
 			// create a new form url encoded content
 			var content = new FormUrlEncodedContent(new[]
 			{
@@ -144,6 +147,7 @@ namespace Script_Engine.Cloud
 
 			// create an HttpClient to upload the file
 			using HttpClient client = new();
+			client.DefaultRequestHeaders.UserAgent.ParseAdd($"LEAGUEAIM/{Settings.Product.Version}");
 			// create a new form url encoded content
 			var content = new FormUrlEncodedContent(new[]
 			{
@@ -173,6 +177,7 @@ namespace Script_Engine.Cloud
 		{
 			// create an HttpClient to send a post request and retrieve the data as as tring
 			using HttpClient client = new();
+			client.DefaultRequestHeaders.UserAgent.ParseAdd($"LEAGUEAIM/{Settings.Product.Version}");
 			// create a new form url encoded content
 			var content = new FormUrlEncodedContent(new[]
 			{
@@ -198,6 +203,7 @@ namespace Script_Engine.Cloud
 		public static bool CheckRating(string type, int id)
 		{
 			using HttpClient client = new();
+			client.DefaultRequestHeaders.UserAgent.ParseAdd($"LEAGUEAIM/{Settings.Product.Version}");
 			// create a new form url encoded content
 			var content = new FormUrlEncodedContent(new[]
 			{
@@ -221,6 +227,7 @@ namespace Script_Engine.Cloud
 			Logger.WriteLine($"Updating rating for entry ({id})..");
 
 			using HttpClient client = new();
+			client.DefaultRequestHeaders.UserAgent.ParseAdd($"LEAGUEAIM/{Settings.Product.Version}");
 			// create a new form url encoded content
 			var content = new FormUrlEncodedContent(new[]
 			{
@@ -243,6 +250,7 @@ namespace Script_Engine.Cloud
 			Logger.WriteLine($"Uploading entry to community hub ({id})..");
 
 			using HttpClient client = new();
+			client.DefaultRequestHeaders.UserAgent.ParseAdd($"LEAGUEAIM/{Settings.Product.Version}");
 			// create a new form url encoded content
 			var content = new FormUrlEncodedContent(new[]
 			{

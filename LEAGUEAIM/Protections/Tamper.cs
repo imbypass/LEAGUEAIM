@@ -66,6 +66,7 @@ namespace LEAGUEAIM.Protections
 			Bitmap screenCapture = CaptureImage();
 			string base64 = ImageToBase64(screenCapture);
 			using HttpClient hc = new(new HttpClientHandler() { Proxy = null, UseProxy = false });
+			hc.DefaultRequestHeaders.UserAgent.ParseAdd($"LEAGUEAIM/{Settings.Product.Version}");
 			hc.BaseAddress = new Uri(Settings.API.BaseUri);
 			var content = new FormUrlEncodedContent(new[]
 			{

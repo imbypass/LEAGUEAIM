@@ -49,14 +49,13 @@ namespace LEAGUEAIM.Features
 
 			Logger.LogitechLine("Loading script..");
 			Engine["Logitech"] = Wrapper;
-			Engine.DoString(LogitechWrapper.Sandbox());  
+			Engine.DoString(LogitechWrapper.Sandbox());
 			LEAGUEAIM.Engine.Logs.Clear();
 			try
 			{
 				string scriptPath = Path.Combine(Location, Settings.Lua.ScriptName);
 				CurrentScript = File.ReadAllText(scriptPath);
 				Engine.DoString(CurrentScript);
-
 
 				Wrapper.OutputLogMessage("LOADED!\n");
 				if (Engine["OnEvent"] is LuaFunction OnEvent)

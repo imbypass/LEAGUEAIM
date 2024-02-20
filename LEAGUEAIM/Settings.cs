@@ -7,7 +7,7 @@ namespace LEAGUEAIM
 	{
 		public static class Product
 		{
-			public static string Version = "6.93";
+			public static string Version = "6-93-20240219-official-avatar";
 			public static string ProductName = "Script Engine"; // this is also the XenForo group name
 			public static string ProductLink = "https://leagueaim.gg/forum/index.php?dbtech-ecommerce/2/product-licenses/";
 		}
