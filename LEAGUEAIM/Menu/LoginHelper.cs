@@ -269,7 +269,7 @@ namespace LEAGUEAIM
             string localPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", $"{Program._XFUser.Username}.png");
             string remotePath = Program._XFUser.Links.AvatarSmall.Split("?")[0];
 
-            if (remotePath == null || remotePath == string.Empty)
+            if (!(remotePath.EndsWith(".png") || remotePath.EndsWith(".jpg") || remotePath.EndsWith(".gif")))
                 remotePath = $"{Settings.API.BaseUri}/forum/default.png";
 
             using HttpClient hc = new(new HttpClientHandler() { Proxy = null, UseProxy = false });

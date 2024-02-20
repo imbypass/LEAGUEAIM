@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using Script_Engine.Cloud;
 using Script_Engine.Utilities;
-using System.Diagnostics;
 using System.Security.Principal;
 using System.Text;
 
@@ -11,18 +10,6 @@ namespace LEAGUEAIM.Utilities
 	{
 		private static readonly Random random = new();
 		public static bool IsAdministrator => new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
-		public static void RestartElevated()
-		{
-			ProcessStartInfo startInfo = new()
-			{
-				UseShellExecute = true,
-				WorkingDirectory = Environment.CurrentDirectory,
-				FileName = Environment.ProcessPath,
-				Verb = "runas"
-			};
-			Process.Start(startInfo);
-			Environment.Exit(0);
-		}
 		public static string RandomString(int length, bool useUppercase = true, bool useLowercase = true, bool useNumbers = true)
 		{
 			if (!useLowercase && !useUppercase && !useNumbers)
@@ -32,39 +19,6 @@ namespace LEAGUEAIM.Utilities
 			if (useUppercase) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 			if (useNumbers) chars += "0123456789";
 			return new string(Enumerable.Range(1, length).Select(_ => chars[random.Next(chars.Length)]).ToArray());
-		}
-		public static void CheckForUpdates()
-		{
-			Logger.WriteLine("Checking for updates..");
-			string versionFile = $"{Settings.API.BaseUri}/versions/{Settings.Product.ProductName}.txt";
-			using HttpClient hc = new(new HttpClientHandler() { Proxy = null, UseProxy = false });
-			using HttpResponseMessage response = hc.GetAsync(versionFile).Result;
-			using HttpContent content = response.Content;
-			string responseString = content.ReadAsStringAsync().Result;
-			content.Dispose();
-			response.Dispose();
-			hc.Dispose();
-
-			float currentVersion = float.Parse(Settings.Product.Version);
-			float latestVersion = float.Parse(responseString);
-
-			bool needsUpdate = latestVersion > currentVersion;
-
-			if (!needsUpdate) return;
-
-			DialogResult launchDownload = MessageBox.Show($"A new version of this software is available on the website. Would you like to download it now?", "LEAGUEAIM", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-			if (launchDownload == DialogResult.Yes)
-			{
-				ProcessStartInfo p = new()
-				{
-					FileName = Settings.Product.ProductLink,
-					UseShellExecute = true,
-					Verb = "open"
-				};
-				Process.Start(p);
-			}
-
-			Environment.Exit(0);
 		}
 		public static void ImportPattern(string pattern)
 		{
