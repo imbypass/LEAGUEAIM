@@ -11,6 +11,10 @@ namespace LEAGUEAIM.Utilities
 				$"{Settings.API.BaseUri}/assets/ai/Rubik.ttf"
 			},
 			{
+				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "Poppins.ttf"),
+				$"{Settings.API.BaseUri}/assets/ai/Poppins.ttf"
+			},
+			{
 				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "SharpGrotesk.ttf"),
 				$"{Settings.API.BaseUri}/assets/ai/SharpGrotesk.ttf"
 			},

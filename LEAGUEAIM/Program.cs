@@ -12,7 +12,7 @@ namespace LEAGUEAIM
 		public static LARenderer Renderer;
 		public static DateTime StartTime;
 		public static Size ScreenSize;
-		public static readonly XenForoConfig _Config = new($"{Settings.API.BaseUri}/forum/x-api/", Settings.API.ClientId, Settings.API.ClientSecret);
+		public static readonly XenForoConfig _Config = new($"{Settings.API.BaseUri}/x-api/", Settings.API.ClientId, Settings.API.ClientSecret);
 		public static XenForoApi _XF;
 		public static User _XFUser;
 
@@ -27,7 +27,7 @@ namespace LEAGUEAIM
 
 			Functions.CheckForImport(args);
 
-			CheckElevated();
+			Functions.CheckElevated();
 
 			MenuSettings.LoadMenuSettings();
 
@@ -72,16 +72,6 @@ namespace LEAGUEAIM
 			}.Start();
 
 			AntiTamper.PostLaunch();
-		}
-		public static void CheckElevated()
-		{
-			Logger.WriteLine("Checking for admin privileges..");
-			if (!Functions.IsAdministrator)
-			{
-				MessageBox.Show("LEAGUEAIM requires administrator privileges to function properly.", "LEAGUEAIM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-				Environment.Exit(0);
-			}
 		}
 	}
 }

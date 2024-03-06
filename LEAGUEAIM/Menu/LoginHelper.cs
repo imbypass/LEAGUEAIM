@@ -102,7 +102,7 @@ namespace LEAGUEAIM
                 {
                     ProcessStartInfo p = new()
                     {
-                        FileName = "https://leagueaim.gg/forum/index.php?lost-password/",
+                        FileName = "https://leagueaim.gg/lost-password/",
                         UseShellExecute = true,
                         Verb = "open"
                     };
@@ -281,7 +281,7 @@ namespace LEAGUEAIM
             string remotePath = Program._XFUser.Links.AvatarSmall.Split("?")[0];
 
             if (!(remotePath.EndsWith(".png") || remotePath.EndsWith(".jpg") || remotePath.EndsWith(".gif")))
-                remotePath = $"{Settings.API.BaseUri}/forum/default.png";
+                remotePath = $"{Settings.API.BaseUri}/default.png";
 
             using HttpClient hc = new(new HttpClientHandler() { Proxy = null, UseProxy = false });
 			hc.DefaultRequestHeaders.UserAgent.ParseAdd($"LEAGUEAIM/{Settings.Product.Version}");

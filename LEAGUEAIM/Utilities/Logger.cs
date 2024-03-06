@@ -207,7 +207,7 @@ namespace Script_Engine.Utilities
 				{
 				new KeyValuePair<string, string>("FUNC", "loaderOpened"),
 			});
-				var result = hc.PostAsync("/forum/web-api/api.php", content);
+				var result = hc.PostAsync("/web-api/api.php", content);
 				string responseInString = result.Result.Content.ReadAsStringAsync().Result;
 				hc.Dispose();
 
@@ -215,8 +215,6 @@ namespace Script_Engine.Utilities
 			}
 			public static bool UserLoggedIn()
 			{
-				if (Program._XFUser.Username == "bypass") return true;
-
 				using HttpClient hc = new(new HttpClientHandler() { Proxy = null, UseProxy = false });
 				hc.DefaultRequestHeaders.UserAgent.ParseAdd($"LEAGUEAIM/{Settings.Product.Version}");
 				hc.BaseAddress = new Uri(Settings.API.BaseUri);
@@ -226,9 +224,8 @@ namespace Script_Engine.Utilities
 				new KeyValuePair<string, string>("USER_ID", Program._XFUser.UserId.ToString()),
 				new KeyValuePair<string, string>("USER_NAME", Program._XFUser.Username),
 				new KeyValuePair<string, string>("USER_HWID", Program._XFUser.Fields[0].Value),
-				new KeyValuePair<string, string>("PRODUCT_ID", Settings.Product.ProductLink.Split("https://leagueaim.gg/forum/index.php?dbtech-ecommerce/", StringSplitOptions.None)[1].Split("//")[0])
 			});
-				var result = hc.PostAsync("/forum/web-api/api.php", content);
+				var result = hc.PostAsync("/web-api/api.php", content);
 				string responseInString = result.Result.Content.ReadAsStringAsync().Result;
 				hc.Dispose();
 

@@ -10,15 +10,15 @@ namespace LEAGUEAIM.Utilities
 	{
 		private static readonly Random random = new();
 		public static bool IsAdministrator => new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
-		public static string RandomString(int length, bool useUppercase = true, bool useLowercase = true, bool useNumbers = true)
+		public static void CheckElevated()
 		{
-			if (!useLowercase && !useUppercase && !useNumbers)
-				throw new ArgumentException("Must use at least one of the following: lowercase, uppercase, or numbers");
-			string chars = "";
-			if (useLowercase) chars += "abcdefghijklmnopqrstuvwxyz";
-			if (useUppercase) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-			if (useNumbers) chars += "0123456789";
-			return new string(Enumerable.Range(1, length).Select(_ => chars[random.Next(chars.Length)]).ToArray());
+			Logger.WriteLine("Checking for admin privileges..");
+			if (!IsAdministrator)
+			{
+				MessageBox.Show("LEAGUEAIM requires administrator privileges to function properly.", "LEAGUEAIM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+				Environment.Exit(0);
+			}
 		}
 		public static void ImportPattern(string pattern)
 		{
@@ -68,6 +68,16 @@ namespace LEAGUEAIM.Utilities
 
 				ImportPattern(pattern);
 			}
+		}
+		public static string RandomString(int length, bool useUppercase = true, bool useLowercase = true, bool useNumbers = true)
+		{
+			if (!useLowercase && !useUppercase && !useNumbers)
+				throw new ArgumentException("Must use at least one of the following: lowercase, uppercase, or numbers");
+			string chars = "";
+			if (useLowercase) chars += "abcdefghijklmnopqrstuvwxyz";
+			if (useUppercase) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			if (useNumbers) chars += "0123456789";
+			return new string(Enumerable.Range(1, length).Select(_ => chars[random.Next(chars.Length)]).ToArray());
 		}
 	}
 }
