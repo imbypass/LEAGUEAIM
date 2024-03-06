@@ -4,6 +4,7 @@
     {
         Config,
         Script,
-        Pattern
+        Pattern,
+        Style
     }
 }

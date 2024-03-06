@@ -24,10 +24,11 @@ namespace Script_Engine.Cloud
 		private static List<CloudEntry> configs = [];
 		private static List<CloudEntry> scripts = [];
 		private static List<CloudEntry> patterns = [];
+		private static List<CloudEntry> styles = [];
 		private static List<CloudEntry> community = [];
 		private static Vector2 menuPos = new(0, 0);
 
-		private static readonly string[] FilterTypes = ["All", "Profiles", "Patterns", "Scripts"];
+		private static readonly string[] FilterTypes = ["All", "Profiles", "Patterns", "Scripts", "Styles"];
 		private static int FilterType = 0;
 		private static string SearchQueryCommunity = string.Empty;
 		private static string SearchQueryProfiles = string.Empty;
@@ -98,6 +99,14 @@ namespace Script_Engine.Cloud
 					if (ImGui.BeginTabItem("Scripts"))
 					{
 						RenderStorageList(scripts, ref SearchQueryScripts);
+
+						ImGui.EndTabItem();
+					}
+
+					// CREATE SCRIPTS TAB
+					if (ImGui.BeginTabItem("Styles"))
+					{
+						RenderStorageList(styles, ref SearchQueryScripts);
 
 						ImGui.EndTabItem();
 					}
@@ -431,99 +440,104 @@ namespace Script_Engine.Cloud
 			ImGui.NextColumn();
 			ImGui.SetCursorPosY(ImGui.GetCursorPosY() + textOffset / 2);
 
-			if (entry.Author != Program._XFUser.Username)
-				ImGui.SetCursorPosX(ImGui.GetCursorPosX() + (ImGui.GetColumnWidth() - 24) / 4 + 2);
-
-			ImGui.PushFont(Fonts.IconsSm);
-
-			if (ImGui.Button(IconFonts.FontAwesome6.Download + "##" + entry.Type + entry.Id, new(24, 24)))
+			if (entry.Name != "No files found")
 			{
-				CloudEntry item = CloudMethods.RetrieveFile(entry.Type, entry.Id);
-				CloudMethods.SaveFile(item);
-				ImGui.OpenPopup("Entry Saved " + entry.Id);
-			}
-			if (ImGui.IsItemHovered())
-			{
-				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
-				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
-				if (ImGui.BeginTooltip())
+
+				if (entry.Author != Program._XFUser.Username)
+					ImGui.SetCursorPosX(ImGui.GetCursorPosX() + (ImGui.GetColumnWidth() - 24) / 4 + 2);
+
+				ImGui.PushFont(Fonts.IconsSm);
+
+				if (ImGui.Button(IconFonts.FontAwesome6.Download + "##" + entry.Type + entry.Id, new(24, 24)))
 				{
-					ImGui.PushFont(Fonts.Menu);
-					ImGui.Text("Download");
-					ImGui.PopFont();
-					ImGui.EndTooltip();
+					CloudEntry item = CloudMethods.RetrieveFile(entry.Type, entry.Id);
+					CloudMethods.SaveFile(item);
+					ImGui.OpenPopup("Entry Saved " + entry.Id);
 				}
-				ImGui.PopStyleVar();
-				ImGui.PopStyleColor();
-			}
-
-			ImGui.SameLine();
-
-			if (ImGui.Button(IconFonts.FontAwesome6.TrashCan + "##" + entry.Type + entry.Id, new(24, 24)))
-			{
-				ImGui.OpenPopup("Delete Entry " + entry.Id);
-			}
-			if (ImGui.IsItemHovered())
-			{
-				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
-				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
-				if (ImGui.BeginTooltip())
+				if (ImGui.IsItemHovered())
 				{
-					ImGui.PushFont(Fonts.Menu);
-					ImGui.Text("Delete");
-					ImGui.PopFont();
-					ImGui.EndTooltip();
+					ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+					ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
+					if (ImGui.BeginTooltip())
+					{
+						ImGui.PushFont(Fonts.Menu);
+						ImGui.Text("Download");
+						ImGui.PopFont();
+						ImGui.EndTooltip();
+					}
+					ImGui.PopStyleVar();
+					ImGui.PopStyleColor();
 				}
-				ImGui.PopStyleVar();
-				ImGui.PopStyleColor();
-			}
 
-			ImGui.SameLine();
+				ImGui.SameLine();
 
-			if (ImGui.Button(IconFonts.FontAwesome6.Globe + "##" + entry.Type + entry.Id, new(24, 24)))
-			{
-				string data = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{entry.Type}|{entry.Id}"));
-				string fullUri = $"https://leagueaim.gg/import?data={data}";
-				ImGui.SetClipboardText(fullUri);
-				ImGui.OpenPopup("Entry Shared");
-			}
-			if (ImGui.IsItemHovered())
-			{
-				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
-				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
-				if (ImGui.BeginTooltip())
+				if (ImGui.Button(IconFonts.FontAwesome6.TrashCan + "##" + entry.Type + entry.Id, new(24, 24)))
 				{
-					ImGui.PushFont(Fonts.Menu);
-					ImGui.Text("Copy import link");
-					ImGui.PopFont();
-					ImGui.EndTooltip();
+					ImGui.OpenPopup("Delete Entry " + entry.Id);
 				}
-				ImGui.PopStyleVar();
-				ImGui.PopStyleColor();
-			}
-
-			ImGui.SameLine();
-
-			if (ImGui.Button(IconFonts.FontAwesome6.ShareFromSquare + "##" + entry.Type + entry.Id, new(24, 24)))
-			{
-				ImGui.OpenPopup("Confirm Entry " + entry.Id);
-			}
-			if (ImGui.IsItemHovered())
-			{
-				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
-				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
-				if (ImGui.BeginTooltip())
+				if (ImGui.IsItemHovered())
 				{
-					ImGui.PushFont(Fonts.Menu);
-					ImGui.Text("Publish to Community");
-					ImGui.PopFont();
-					ImGui.EndTooltip();
+					ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+					ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
+					if (ImGui.BeginTooltip())
+					{
+						ImGui.PushFont(Fonts.Menu);
+						ImGui.Text("Delete");
+						ImGui.PopFont();
+						ImGui.EndTooltip();
+					}
+					ImGui.PopStyleVar();
+					ImGui.PopStyleColor();
 				}
-				ImGui.PopStyleVar();
-				ImGui.PopStyleColor();
+
+				ImGui.SameLine();
+
+				if (ImGui.Button(IconFonts.FontAwesome6.Globe + "##" + entry.Type + entry.Id, new(24, 24)))
+				{
+					string data = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{entry.Type}|{entry.Id}"));
+					string fullUri = $"https://leagueaim.gg/import?data={data}";
+					ImGui.SetClipboardText(fullUri);
+					ImGui.OpenPopup("Entry Shared");
+				}
+				if (ImGui.IsItemHovered())
+				{
+					ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+					ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
+					if (ImGui.BeginTooltip())
+					{
+						ImGui.PushFont(Fonts.Menu);
+						ImGui.Text("Copy import link");
+						ImGui.PopFont();
+						ImGui.EndTooltip();
+					}
+					ImGui.PopStyleVar();
+					ImGui.PopStyleColor();
+				}
+
+				ImGui.SameLine();
+
+				if (ImGui.Button(IconFonts.FontAwesome6.ShareFromSquare + "##" + entry.Type + entry.Id, new(24, 24)))
+				{
+					ImGui.OpenPopup("Confirm Entry " + entry.Id);
+				}
+				if (ImGui.IsItemHovered())
+				{
+					ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+					ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
+					if (ImGui.BeginTooltip())
+					{
+						ImGui.PushFont(Fonts.Menu);
+						ImGui.Text("Publish to Community");
+						ImGui.PopFont();
+						ImGui.EndTooltip();
+					}
+					ImGui.PopStyleVar();
+					ImGui.PopStyleColor();
+				}
+
+				ImGui.PopFont();
 			}
 
-			ImGui.PopFont();
 
 			cMenuPos = ImGui.GetWindowPos();
 			cMenuSize = ImGui.GetWindowSize();
@@ -668,6 +682,7 @@ namespace Script_Engine.Cloud
 			configs = CloudMethods.RetrieveFiles("configs");
 			scripts = CloudMethods.RetrieveFiles("scripts");
 			patterns = CloudMethods.RetrieveFiles("patterns");
+			styles = CloudMethods.RetrieveFiles("styles");
 			community = CloudMethods.RetrieveCommunity();
 
 			UpdateSortingMethod();

@@ -140,6 +140,9 @@ namespace Script_Engine.Cloud
 				case "patterns":
 					filePath = Path.Combine(Base, "patterns", name.Replace(".txt", "") + ".txt");
 					break;
+				case "styles":
+					filePath = Path.Combine(Base, "styles", name.Replace(".ini", "") + ".ini");
+					break;
 				default:
 					return false;
 			}

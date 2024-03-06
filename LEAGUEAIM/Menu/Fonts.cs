@@ -12,6 +12,7 @@ namespace LEAGUEAIM.Utilities
 		public static ImFontPtr MenuSm;
 		public static ImFontPtr MenuLg;
 		public static bool Replaced = false;
+		public static int SelectedFont = -1;
 
 		public unsafe static bool Load(LARenderer renderer)
 		{
@@ -19,21 +20,18 @@ namespace LEAGUEAIM.Utilities
 			{
 				bool res = renderer.ReplaceFont(config =>
 				{
-					string menuFontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "Rubik.ttf");
+					string menuFontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "Poppins.ttf");
 					string headerFontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "SharpGrotesk.ttf");
 					string iconFontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "FontAwesome.ttf");
 					ushort[] customRange = [IconFonts.FontAwesome6.IconMin, IconFonts.FontAwesome6.IconMax, 0];
 					var io = ImGui.GetIO();
 
 
-					if (File.Exists(menuFontPath))
-						Menu = io.Fonts.AddFontFromFileTTF(menuFontPath, 15, config, io.Fonts.GetGlyphRangesDefault());
-
-					if (File.Exists(menuFontPath))
-						MenuSm = io.Fonts.AddFontFromFileTTF(menuFontPath, 12, config, io.Fonts.GetGlyphRangesDefault());
-
-					if (File.Exists(menuFontPath))
-						MenuLg = io.Fonts.AddFontFromFileTTF(menuFontPath, 16, config, io.Fonts.GetGlyphRangesDefault());
+					if (File.Exists(menuFontPath)) {
+						Menu = io.Fonts.AddFontFromFileTTF(menuFontPath, 16, config, io.Fonts.GetGlyphRangesDefault());
+						MenuSm = io.Fonts.AddFontFromFileTTF(menuFontPath, 13, config, io.Fonts.GetGlyphRangesDefault());
+						MenuLg = io.Fonts.AddFontFromFileTTF(menuFontPath, 18, config, io.Fonts.GetGlyphRangesDefault());
+					}
 
 					fixed (ushort* p = &customRange[0])
 						if (File.Exists(iconFontPath))
@@ -53,6 +51,27 @@ namespace LEAGUEAIM.Utilities
 			}
 
 			return false;
+		}
+
+		public static string[] GetInstalledFonts()
+		{
+			string[] fonts = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "*.ttf");
+
+			// remove the path and extension
+			for (int i = 0; i < fonts.Length; i++)
+			{
+				fonts[i] = Path.GetFileNameWithoutExtension(fonts[i]);
+			}
+
+			return fonts;
+		}
+		public static void SetMenuFont(string fontPath, float size)
+		{
+			var io = ImGui.GetIO();
+			Menu = io.Fonts.AddFontFromFileTTF(fontPath, size);
+			MenuSm = io.Fonts.AddFontFromFileTTF(fontPath, size - 3);
+			MenuLg = io.Fonts.AddFontFromFileTTF(fontPath, size + 3);
+			Fonts.Replaced = false;
 		}
 	}
 }

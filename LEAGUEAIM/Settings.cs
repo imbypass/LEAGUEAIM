@@ -7,9 +7,8 @@ namespace LEAGUEAIM
 	{
 		public static class Product
 		{
-			public static string Version = "6-94-20240220-official-agent";
+			public static string Version = "7-01-20240305-official-targaryen";
 			public static string ProductName = "Script Engine"; // this is also the XenForo group name
-			public static string ProductLink = "https://leagueaim.gg/forum/index.php?dbtech-ecommerce/2/product-licenses/";
 		}
 		public static class API
 		{
@@ -35,9 +34,9 @@ namespace LEAGUEAIM
 		}
 		public static class Colors
 		{
-			public static Vector4 BgColor = new(0.0f, 0.0f, 0.0f, 0.95f);
+			public static Vector4 BgColor = new(0.09f, 0.09f, 0.09f, 0.95f);
 			public static Vector4 TextColor = new(1.0f, 1.0f, 1.0f, 1.0f);
-			public static Vector4 AccentColor = new(0.35f, 0.31f, 0.81f, 1.0f);
+			public static Vector4 AccentColor = new (0.51f, 0.43f, 0.88f, 1.0f);
 			public static Vector4 FrameColor = new(1f, 1f, 1f, 0.06f);
 			public static Vector4 CrosshairColor = new(0.0f, 1.0f, 0.0f, 1.0f);
 		}
@@ -68,6 +67,7 @@ namespace LEAGUEAIM
 			public static int CurrentScript = 0;
 			public static int CurrentConfig = -1;
 			public static string NewConfigName = "New Profile";
+			public static string NewStyleName = "New Style";
 		}
 	}
 }

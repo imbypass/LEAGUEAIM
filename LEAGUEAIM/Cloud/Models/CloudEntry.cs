@@ -33,6 +33,7 @@ namespace Script_Engine.Cloud
 			"configs" => CloudEntryType.Config,
 			"scripts" => CloudEntryType.Script,
 			"patterns" => CloudEntryType.Pattern,
+			"styles" => CloudEntryType.Style,
 			_ => CloudEntryType.Config
 		};
 
