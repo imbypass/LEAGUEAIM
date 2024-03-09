@@ -11,7 +11,6 @@
     <IsPublishable>True</IsPublishable>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 	<PublishSingleFile>true</PublishSingleFile>
-	<ApplicationIcon>LA_Blank.ico</ApplicationIcon>
 	<StartupObject>LEAGUEAIM.Program</StartupObject>
 	<AssemblyVersion>6.0</AssemblyVersion>
 	<FileVersion>6.0</FileVersion>
