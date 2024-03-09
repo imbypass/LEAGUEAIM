@@ -22,6 +22,7 @@ namespace LEAGUEAIM
 			public static bool ShowWatermark = true;
 			public static bool ControllerSupport = false;
 			public static bool StreamProof = false;
+			public static bool HideFromTaskbar = false;
 			public static bool RainbowMode = false;
 			public static int RainbowSpeed = 30;
 			public static bool HasInterception = false;
@@ -67,6 +68,13 @@ namespace LEAGUEAIM
 			public static int CurrentConfig = -1;
 			public static string NewConfigName = "New Profile";
 			public static string NewStyleName = "New Style";
+		}
+
+		public static class ButtonSizes
+		{
+			public static int Full = 256;
+			public static int Half = 123;
+			public static int Third = 79;
 		}
 	}
 }

@@ -20,11 +20,12 @@
     using Size = System.Drawing.Size;
     using ImGuiNET;
     using System.Collections.Concurrent;
+	using LEAGUEAIM;
 
-    /// <summary>
-    /// A class to create clickable transparent overlay on windows machine.
-    /// </summary>
-    public abstract class Overlay : IDisposable
+	/// <summary>
+	/// A class to create clickable transparent overlay on windows machine.
+	/// </summary>
+	public abstract class Overlay : IDisposable
     {
         private readonly string title;
         private readonly Format format;
@@ -534,7 +535,13 @@
                 throw new Exception($"Failed to Register class of name {this.wndClass.ClassName}");
             }
 
-            this.window = new Win32Window(
+            WindowExStyles wexstyles = WindowExStyles.WS_EX_ACCEPTFILES | WindowExStyles.WS_EX_TOPMOST;
+
+            if (Settings.Engine.HideFromTaskbar)
+                wexstyles |= WindowExStyles.WS_EX_TOOLWINDOW;
+
+
+			this.window = new Win32Window(
                 wndClass.ClassName,
                 800,
                 600,
@@ -542,7 +549,7 @@
                 0,
                 this.title,
                 WindowStyles.WS_POPUP,
-                WindowExStyles.WS_EX_ACCEPTFILES | WindowExStyles.WS_EX_TOPMOST | WindowExStyles.WS_EX_TOOLWINDOW);
+                wexstyles);
             this.renderer = new ImGuiRenderer(device, deviceContext, 800, 600);
             this.inputhandler = new ImGuiInputHandler(this.window.Handle);
             this.overlayIsReady = true;

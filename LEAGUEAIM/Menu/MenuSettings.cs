@@ -70,6 +70,13 @@ namespace LEAGUEAIM
 				ImGui.Checkbox("Stream-Proof", ref Settings.Engine.StreamProof);
 				Drawing.Tooltip($"Disable rendering LEAGUEAIM in OBS.", Settings.Colors.AccentColor);
 
+				if (ImGui.Checkbox("Hide From Taskbar", ref Settings.Engine.HideFromTaskbar))
+				{
+					SaveMenuSettings();
+					ImGui.OpenPopup("Taskbar Toggle");
+				}
+				Drawing.Tooltip($"Hide LEAGUEAIM from the taskbar and Alt+Tab.", Settings.Colors.AccentColor);
+
 				Watermark.Instance.Render();
 
 				ImGui.Checkbox("Cursor Check", ref Settings.Engine.CursorCheck);
@@ -77,7 +84,7 @@ namespace LEAGUEAIM
 				if (Settings.Engine.CursorCheck)
 				{
 					ImGui.SameLine();
-					ImGui.SetNextItemWidth(150);
+					ImGui.SetNextItemWidth(110);
 					ImGui.Combo("##CURSORLIST", ref Settings.Engine.CursorCheckType, CursorChecks, CursorChecks.Length);
 				}
 
@@ -155,26 +162,58 @@ namespace LEAGUEAIM
 				}
 				ImGui.PopStyleColor();
 				ImGui.PopStyleVar();
+
+				bool taskbar = true;
+				cMenuPos = ImGui.GetWindowPos();
+				cMenuSize = ImGui.GetWindowSize();
+				ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 187, cMenuPos.Y + (cMenuSize.Y / 2) - 60));
+				ImGui.SetNextWindowSize(new(375, 120));
+				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
+				if (ImGui.BeginPopupModal("Taskbar Toggle", ref taskbar, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
+				{
+					ImGui.Spacing();
+					Drawing.TextCentered($"LEAGUEAIM requires a restart for this change to take effect.\nWould you like to restart LEAGUEAIM now?");
+					ImGui.Spacing();
+					ImGui.SetCursorPos(new Vector2((ImGui.GetWindowSize().X - 68) * 0.3f, ImGui.GetCursorPosY()));
+					if (ImGui.Button("Yes", new(68, 28)))
+					{
+						Process.Start(Application.ExecutablePath);
+						Environment.Exit(0);
+					}
+					ImGui.SameLine();
+					ImGui.SetCursorPos(new Vector2((ImGui.GetWindowSize().X - 68) * 0.6f, ImGui.GetCursorPosY()));
+					if (ImGui.Button("No", new(68, 28)))
+					{
+						ImGui.CloseCurrentPopup();
+					}
+					ImGui.Spacing();
+
+					ImGui.EndPopup();
+				}
+				ImGui.PopStyleColor();
+				ImGui.PopStyleVar();
+
 				ImGui.Separator();
 				ImGui.Text("Keybinding");
 				Keybinds.Instance.Render();
 				ImGui.Separator();
 				ImGui.Text("Menu Settings");
-				if (Drawing.IconButton("Save", IconFonts.FontAwesome6.FloppyDisk, new(115, 28), true, ImGui.GetStyle().FrameRounding, 0))
+				if (Drawing.IconButton("Save", IconFonts.FontAwesome6.FloppyDisk, new(Settings.ButtonSizes.Half, 28), true, ImGui.GetStyle().FrameRounding, 0))
 				{
 					MenuSettings.SaveMenuSettings();
 					MenuSettings.SaveKeybinds();
 					ImGui.OpenPopup("Settings Saved");
 				}
 				ImGui.SameLine();
-				if (Drawing.IconButton("Load", IconFonts.FontAwesome6.FolderOpen, new(115, 28), true, ImGui.GetStyle().FrameRounding, 0))
+				if (Drawing.IconButton("Load", IconFonts.FontAwesome6.FolderOpen, new(Settings.ButtonSizes.Half, 28), true, ImGui.GetStyle().FrameRounding, 0))
 				{
 					MenuSettings.LoadMenuSettings();
 					MenuSettings.LoadKeybinds();
 					ImGui.OpenPopup("Settings Loaded");
 				}
 
-				if (Drawing.IconButton("Switch Account", IconFonts.FontAwesome6.Users, new(240, 28), true, ImGui.GetStyle().FrameRounding, 0))
+				if (Drawing.IconButton("Switch Account", IconFonts.FontAwesome6.Users, new(Settings.ButtonSizes.Full, 28), true, ImGui.GetStyle().FrameRounding, 0))
 				{
 					ImGui.OpenPopup("Switch Account");
 				}
@@ -290,13 +329,13 @@ namespace LEAGUEAIM
 				ImGui.Separator();
 				ImGui.Text("Saved Styles");
 
-				ImGui.SetNextItemWidth(240);
+				ImGui.SetNextItemWidth(Settings.ButtonSizes.Full);
 				if (ImGui.Combo("##STYLELIST", ref CurrentStyle, GetStyles(), GetStyles().Length, GetStyles().Length))
 				{
 					string styleName = GetStyles()[CurrentStyle];
 					LoadMenuColors(styleName);
 				}
-				if (Drawing.IconButton("Open", IconFonts.FontAwesome6.FolderOpen, new(115, 28), true, ImGui.GetStyle().FrameRounding, 0))
+				if (Drawing.IconButton("Open", IconFonts.FontAwesome6.FolderOpen, new(Settings.ButtonSizes.Half, 28), true, ImGui.GetStyle().FrameRounding, 0))
 				{
 					string folderPath = Path.Combine(Base, "styles");
 					if (Directory.Exists(folderPath))
@@ -310,17 +349,17 @@ namespace LEAGUEAIM
 					}
 				}
 				ImGui.SameLine();
-				if (Drawing.IconButton("Delete", IconFonts.FontAwesome6.TrashCan, new(115, 28), true, ImGui.GetStyle().FrameRounding, 0))
+				if (Drawing.IconButton("Delete", IconFonts.FontAwesome6.TrashCan, new(Settings.ButtonSizes.Half, 28), true, ImGui.GetStyle().FrameRounding, 0))
 				{
 					ImGui.OpenPopup("Delete Style");
 				}
-				if (Drawing.IconButton("Send to Cloud", IconFonts.FontAwesome6.Upload, new(240, 28), true, ImGui.GetStyle().FrameRounding, 0))
+				if (Drawing.IconButton("Send to Cloud", IconFonts.FontAwesome6.Upload, new(Settings.ButtonSizes.Full, 28), true, ImGui.GetStyle().FrameRounding, 0))
 				{
 					ImGui.OpenPopup("Upload Style");
 				}
 
 				ImGui.InputText("##STYLENAME", ref Settings.Menu.NewStyleName, 32, ImGuiInputTextFlags.EnterReturnsTrue);
-				if (Drawing.IconButton("Create New Style", IconFonts.FontAwesome6.Pencil, new(240, 28), true, ImGui.GetStyle().FrameRounding, 0))
+				if (Drawing.IconButton("Create New Style", IconFonts.FontAwesome6.Pencil, new(Settings.ButtonSizes.Full, 28), true, ImGui.GetStyle().FrameRounding, 0))
 				{
 					SaveMenuColors(Settings.Menu.NewStyleName);
 					Settings.Menu.NewStyleName = "New Style";
@@ -410,6 +449,7 @@ namespace LEAGUEAIM
 			style ??= "Default";
 
 			iniFile.Write("StreamProof", Settings.Engine.StreamProof.ToString(), "General");
+			iniFile.Write("HideFromTaskbar", Settings.Engine.HideFromTaskbar.ToString(), "General");
 			iniFile.Write("ShowFooter", Settings.Engine.ShowFooter.ToString(), "General");
 			iniFile.Write("ShowWatermark", Watermark.Instance.Enabled.ToString(), "General");
 			iniFile.Write("CursorCheck", Settings.Engine.CursorCheck.ToString(), "General");
@@ -458,6 +498,9 @@ namespace LEAGUEAIM
 
 			if (iniFile.KeyExists("StreamProof", "General"))
 				Settings.Engine.StreamProof = iniFile.Read<bool>("StreamProof", "General");
+
+			if (iniFile.KeyExists("HideFromTaskbar", "General"))
+				Settings.Engine.HideFromTaskbar = iniFile.Read<bool>("HideFromTaskbar", "General");
 
 			if (iniFile.KeyExists("ShowFooter", "General"))
 				Settings.Engine.ShowFooter = iniFile.Read<bool>("ShowFooter", "General");
