@@ -245,7 +245,7 @@ namespace LEAGUEAIM.Features
 			{
 				Settings.Menu.NewConfigName = Profiles.ProfileList[Settings.Menu.CurrentConfig].Replace(".ini", "");
 			}
-			if (ImGui.Button("Load", new(73, 28)))
+			if (ImGui.Button("Load", new(Settings.ButtonSizes.Third, 28)))
 			{
 				if (Settings.Menu.CurrentConfig > -1)
 				{
@@ -254,13 +254,13 @@ namespace LEAGUEAIM.Features
 				}
 			}
 			ImGui.SameLine();
-			if (ImGui.Button("Delete", new(73, 28)))
+			if (ImGui.Button("Delete", new(Settings.ButtonSizes.Third, 28)))
 			{
 				if (Settings.Menu.CurrentConfig > -1)
 					ImGui.OpenPopup("Delete Config");
 			}
 			ImGui.SameLine();
-			if (ImGui.Button("Save", new Vector2(73, 28)))
+			if (ImGui.Button("Save", new Vector2(Settings.ButtonSizes.Third, 28)))
 			{
 				if (Settings.Menu.CurrentConfig > -1)
 				{
@@ -268,7 +268,7 @@ namespace LEAGUEAIM.Features
 					Profiles.SaveProfile(Profiles.CurrentProfile);
 				}
 			}
-			if (Drawing.IconButton("Send to Cloud", IconFonts.FontAwesome6.Upload, new(240, 28), true, ImGui.GetStyle().FrameRounding, 0))
+			if (Drawing.IconButton("Send to Cloud", IconFonts.FontAwesome6.Upload, new(Settings.ButtonSizes.Full, 28), true, ImGui.GetStyle().FrameRounding, 0))
 			{
 				if (Settings.Menu.CurrentConfig > -1)
 					ImGui.OpenPopup("Upload Profile");
@@ -342,7 +342,7 @@ namespace LEAGUEAIM.Features
 			ImGui.PopStyleVar();
 
 			ImGui.InputText("###CONFIGNAME", ref Settings.Menu.NewConfigName, 24);
-			if (ImGui.Button("Open Folder", new(115, 28)))
+			if (ImGui.Button("Open Folder", new(Settings.ButtonSizes.Half, 28)))
 			{
 				string folderPath = Profiles.Location;
 				if (Directory.Exists(folderPath))
@@ -356,7 +356,7 @@ namespace LEAGUEAIM.Features
 				}
 			}
 			ImGui.SameLine();
-			if (ImGui.Button("Create Profile", new(115, 28)))
+			if (ImGui.Button("Create Profile", new(Settings.ButtonSizes.Half, 28)))
 			{
 				Profiles.CurrentProfile = Settings.Menu.NewConfigName;
 				Profiles.CreateProfile(Profiles.CurrentProfile);
@@ -366,7 +366,7 @@ namespace LEAGUEAIM.Features
 			ImGui.Separator();
 			ImGui.Text("Hotkey");
 			Drawing.Tooltip("Set a key to load a profile without opening the menu.", Settings.Colors.AccentColor);
-			Drawing.ConfigKey(new(240, 28));
+			Drawing.ConfigKey(new(Settings.ButtonSizes.Full, 28));
 		}
 	}
 }

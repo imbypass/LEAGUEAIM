@@ -40,9 +40,9 @@ namespace LEAGUEAIM.Features
 		public override void Render()
 		{
 			ImGui.Combo("##KEYBINDLIST", ref Settings.Menu.CurrentKeybind, MenuOptions, MenuOptions.Length, MenuOptions.Length);
-			Drawing.Hotkey(ref MenuKeys[Settings.Menu.CurrentKeybind], new(226 * .65f, 28));
+			Drawing.Hotkey(ref MenuKeys[Settings.Menu.CurrentKeybind], new((242 * .65f) - 1, 28));
 			ImGui.SameLine();
-			if (Drawing.IconButton("Reset", IconFonts.FontAwesome6.ArrowRotateLeft, new(226 * .37f, 28), false, ImGui.GetStyle().FrameRounding, 0))
+			if (Drawing.IconButton("Reset", IconFonts.FontAwesome6.ArrowRotateLeft, new(242 * .37f, 28), false, ImGui.GetStyle().FrameRounding, 0))
 			{
 				switch (Settings.Menu.CurrentKeybind)
 				{

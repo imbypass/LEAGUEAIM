@@ -120,7 +120,7 @@ namespace LEAGUEAIM.Features
 				Settings.Lua.ScriptName = ScriptList[Settings.Lua.CurrentScript];
 			}
 			string activeState = (Settings.Lua.Enabled ? "Deactivate" : "Activate");
-			if (ImGui.Button($"{activeState} Script", new Vector2(240, 30)))
+			if (ImGui.Button($"{activeState} Script", new Vector2(Settings.ButtonSizes.Full, 30)))
 			{
 				if (Settings.Lua.CurrentScript > -1)
 				{
@@ -140,7 +140,7 @@ namespace LEAGUEAIM.Features
 					}
 				}
 			}
-			if (Drawing.IconButton("Open", IconFonts.FontAwesome6.FolderOpen, new(115, 28), true, ImGui.GetStyle().FrameRounding, 0))
+			if (Drawing.IconButton("Open", IconFonts.FontAwesome6.FolderOpen, new(Settings.ButtonSizes.Half, 28), true, ImGui.GetStyle().FrameRounding, 0))
 			{
 				string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "scripts");
 				if (Directory.Exists(folderPath))
@@ -154,12 +154,12 @@ namespace LEAGUEAIM.Features
 				}
 			}
 			ImGui.SameLine();
-			if (Drawing.IconButton("Delete", IconFonts.FontAwesome6.TrashCan, new(115, 28), true, ImGui.GetStyle().FrameRounding, 0))
+			if (Drawing.IconButton("Delete", IconFonts.FontAwesome6.TrashCan, new(Settings.ButtonSizes.Half, 28), true, ImGui.GetStyle().FrameRounding, 0))
 			{
 				if (Settings.Lua.CurrentScript > -1)
 					ImGui.OpenPopup("Delete Script");
 			}
-			if (Drawing.IconButton("Send to Cloud", IconFonts.FontAwesome6.Upload, new(240, 28), true, ImGui.GetStyle().FrameRounding, 0))
+			if (Drawing.IconButton("Send to Cloud", IconFonts.FontAwesome6.Upload, new(Settings.ButtonSizes.Full, 28), true, ImGui.GetStyle().FrameRounding, 0))
 			{
 				if (Settings.Lua.CurrentScript > -1)
 					ImGui.OpenPopup("Upload Script");

@@ -32,9 +32,7 @@ namespace LEAGUEAIM
                 Logger.WriteLine("Found credentials in local database");
 
                 if (LoadCredentials(out Username, out Password))
-                {
                     CheckLogin();
-                }
 
                 IsSaved = true;
             }

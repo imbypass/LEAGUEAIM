@@ -220,7 +220,7 @@ namespace LEAGUEAIM.Features
 			ImGui.Combo("Pattern", ref Pattern.CurrentPattern, patternList, patternList.Length, 6);
 			ImGui.SliderFloat("Y Multiplier", ref Pattern.YMultiplier, 0.1f, 5, "x%.2f", ImGuiSliderFlags.AlwaysClamp);
 			ImGui.SliderFloat("X Multiplier", ref Pattern.XMultiplier, 0.1f, 5, "x%.2f", ImGuiSliderFlags.AlwaysClamp);
-			if (Drawing.IconButton("Open", IconFonts.FontAwesome6.FolderOpen, new(115, 28), true, ImGui.GetStyle().FrameRounding, 0))
+			if (Drawing.IconButton("Open", IconFonts.FontAwesome6.FolderOpen, new(Settings.ButtonSizes.Half, 28), true, ImGui.GetStyle().FrameRounding, 0))
 			{
 				string folderPath = Pattern.Location;
 				if (Directory.Exists(folderPath))
@@ -234,11 +234,11 @@ namespace LEAGUEAIM.Features
 				}
 			}
 			ImGui.SameLine();
-			if (Drawing.IconButton("Delete", IconFonts.FontAwesome6.TrashCan, new(115, 28), true, ImGui.GetStyle().FrameRounding, 0))
+			if (Drawing.IconButton("Delete", IconFonts.FontAwesome6.TrashCan, new(Settings.ButtonSizes.Half, 28), true, ImGui.GetStyle().FrameRounding, 0))
 			{
 				ImGui.OpenPopup("Delete Pattern");
 			}
-			if (Drawing.IconButton("Send to Cloud", IconFonts.FontAwesome6.Upload, new(240, 28), true, ImGui.GetStyle().FrameRounding, 0))
+			if (Drawing.IconButton("Send to Cloud", IconFonts.FontAwesome6.Upload, new(Settings.ButtonSizes.Full, 28), true, ImGui.GetStyle().FrameRounding, 0))
 			{
 				if (GetPatterns()[0] != "No Patterns Found")
 					ImGui.OpenPopup("Upload Pattern");
