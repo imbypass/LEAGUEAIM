@@ -152,7 +152,6 @@ namespace LEAGUEAIM
                 bool isBanned = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == "Banned");
 				bool isRegistered = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == "Registered");
 				bool isCustomer = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == "Customer");
-				bool isSubscribed = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == Product.ProductName);
 
                 if (Program._XFUser == null)
                 {
@@ -179,14 +178,6 @@ namespace LEAGUEAIM
 				}
 
 				if (!isCustomer)
-				{
-					Response = "No active subscription found.";
-					Logger.ErrorLine(Response);
-					ImGui.OpenPopup("Login Error");
-					return;
-				}
-
-				if (!isSubscribed)
 				{
 					Response = "No active subscription found.";
 					Logger.ErrorLine(Response);
@@ -251,11 +242,9 @@ namespace LEAGUEAIM
 
 						bool isCustomer = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == "Customer");
 
-						bool isSubscribed = Program._XFUser.UserGroups.ToList().Any(group => group.UserGroupTitle == Product.ProductName);
-
                         bool hwidMatches = remoteHwid == localHwid;
 
-                        if (isRegistered && isSubscribed && isCustomer && hwidMatches && !isBanned)
+                        if (isRegistered && isCustomer && hwidMatches && !isBanned)
                             return;
 
                         Environment.Exit(0);

@@ -7,8 +7,7 @@ namespace LEAGUEAIM
 	{
 		public static class Product
 		{
-			public static string Version = "7-01-20240305-official-targaryen";
-			public static string ProductName = "Script Engine"; // this is also the XenForo group name
+			public static string Version = "7-10-20240305-official-daenerys";
 		}
 		public static class API
 		{
