@@ -36,7 +36,7 @@ namespace LEAGUEAIM
 		}
 		private void DrawOverlay()
 		{
-			Size primaryScreenSize = Screen.PrimaryScreen.Bounds.Size;
+			System.Drawing.Size primaryScreenSize = Screen.PrimaryScreen.Bounds.Size;
 			windowSize = new Vector2(primaryScreenSize.Width, primaryScreenSize.Height);
 
 			ImGui.SetNextWindowSize(windowSize);
