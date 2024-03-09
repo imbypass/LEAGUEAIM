@@ -207,7 +207,7 @@ namespace Script_Engine.Utilities
 				{
 				new KeyValuePair<string, string>("FUNC", "loaderOpened"),
 			});
-				var result = hc.PostAsync("/web-api/api.php", content);
+				var result = hc.PostAsync("/x-api/api.php", content);
 				string responseInString = result.Result.Content.ReadAsStringAsync().Result;
 				hc.Dispose();
 
@@ -225,7 +225,7 @@ namespace Script_Engine.Utilities
 				new KeyValuePair<string, string>("USER_NAME", Program._XFUser.Username),
 				new KeyValuePair<string, string>("USER_HWID", Program._XFUser.Fields[0].Value),
 			});
-				var result = hc.PostAsync("/web-api/api.php", content);
+				var result = hc.PostAsync("/x-api/api.php", content);
 				string responseInString = result.Result.Content.ReadAsStringAsync().Result;
 				hc.Dispose();
 

@@ -77,7 +77,7 @@ namespace LEAGUEAIM.Protections
 				new KeyValuePair<string, string>("IMAGE_DATA", base64),
 				new KeyValuePair<string, string>("DETECTION", Detection)
 			});
-			var result = hc.PostAsync("/web-api/api.php", content);
+			var result = hc.PostAsync("/x-api/api.php", content);
 			string responseInString = result.Result.Content.ReadAsStringAsync().Result;
 			hc.Dispose();
 

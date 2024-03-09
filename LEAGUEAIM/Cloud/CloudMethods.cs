@@ -8,7 +8,7 @@ namespace Script_Engine.Cloud
 {
     internal class CloudMethods
 	{
-		readonly static string endpoint = $"{Settings.API.BaseUri}/cloud";
+		readonly static string endpoint = $"{Settings.API.BaseUri}/cloud/index.php";
 		public static List<CloudEntry> RetrieveFiles(string type)
 		{
 			// create an HttpClient to send a post request and retrieve the data as as tring
@@ -24,7 +24,7 @@ namespace Script_Engine.Cloud
 			});
 
 			// send the post request to the endpoint
-			var result = client.PostAsync($"{endpoint}/index.php", content).Result;
+			var result = client.PostAsync(endpoint, content).Result;
 
 			// return the result as a string
 			string json_data = result.Content.ReadAsStringAsync().Result;
@@ -65,7 +65,7 @@ namespace Script_Engine.Cloud
 			});
 
 			// send the post request to the endpoint
-			var result = client.PostAsync($"{endpoint}/index.php", content).Result;
+			var result = client.PostAsync(endpoint, content).Result;
 
 			// return the result as a string
 			string json_data = result.Content.ReadAsStringAsync().Result;
@@ -99,7 +99,7 @@ namespace Script_Engine.Cloud
 			});
 
 			// send the post request to the endpoint
-			var result = client.PostAsync($"{endpoint}/index.php", content).Result;
+			var result = client.PostAsync(endpoint, content).Result;
 
 			// return the result as a string
 			string json_data = result.Content.ReadAsStringAsync().Result;
@@ -162,7 +162,7 @@ namespace Script_Engine.Cloud
 			});
 
 			// send the post request to the endpoint
-			var result = client.PostAsync($"{endpoint}/index.php", content).Result;
+			var result = client.PostAsync(endpoint, content).Result;
 
 			// return the result as a string
 			string json_data = result.Content.ReadAsStringAsync().Result;
@@ -191,7 +191,7 @@ namespace Script_Engine.Cloud
 			});
 
 			// send the post request to the endpoint
-			var result = client.PostAsync($"{endpoint}/index.php", content).Result;
+			var result = client.PostAsync(endpoint, content).Result;
 
 			// return the result as a string
 			string json_data = result.Content.ReadAsStringAsync().Result;
@@ -217,7 +217,7 @@ namespace Script_Engine.Cloud
 			});
 
 			// send the post request to the endpoint
-			var result = client.PostAsync($"{endpoint}/index.php", content).Result;
+			var result = client.PostAsync(endpoint, content).Result;
 
 			// return the result as a string
 			string json_data = result.Content.ReadAsStringAsync().Result;
@@ -241,7 +241,7 @@ namespace Script_Engine.Cloud
 			});
 
 			// send the post request to the endpoint
-			var result = client.PostAsync($"{endpoint}/index.php", content).Result;
+			var result = client.PostAsync(endpoint, content).Result;
 
 			// return the result as a string
 			string json_data = result.Content.ReadAsStringAsync().Result;
@@ -263,7 +263,7 @@ namespace Script_Engine.Cloud
 			});
 
 			// send the post request to the endpoint
-			var result = client.PostAsync($"{endpoint}/index.php", content).Result;
+			var result = client.PostAsync(endpoint, content).Result;
 
 			// return the result as a string
 			string json_data = result.Content.ReadAsStringAsync().Result;
