@@ -115,14 +115,14 @@ namespace LEAGUEAIM
         }
         public static void SaveCredentials(string username, string password)
         {
-            using RegistryKey credsKey = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\WOW6432Node\LEAGUEAIM");
+            using RegistryKey credsKey = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\WOW6432Node\LEAGUEAIM");
             credsKey.SetValue("Username", username);
             credsKey.SetValue("Password", password);
             credsKey.Close();
         }
         public static bool LoadCredentials(out string username, out string password)
         {
-            using RegistryKey credsKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\LEAGUEAIM");
+            using RegistryKey credsKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\WOW6432Node\LEAGUEAIM");
             if (credsKey != null)
             {
                 username = credsKey.GetValue("Username").ToString();
