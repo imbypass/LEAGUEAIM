@@ -33,7 +33,7 @@ namespace LEAGUEAIM
 			new Thread(new ThreadStart(Recoil.Loop)) { IsBackground = true, Priority = ThreadPriority.Lowest }.Start();
 			new Thread(new ThreadStart(Rapidfire.Loop)) { IsBackground = true, Priority = ThreadPriority.Lowest }.Start();
 			new Thread(new ThreadStart(Jitter.Loop)) { IsBackground = true, Priority = ThreadPriority.Lowest }.Start();
-			new Thread(new ThreadStart(QuickPeek.Loop)) { IsBackground = true, Priority = ThreadPriority.Lowest }.Start();
+			//new Thread(new ThreadStart(QuickPeek.Loop)) { IsBackground = true, Priority = ThreadPriority.Lowest }.Start();
 			new Thread(new ThreadStart(CloudMenu.UpdateLoop)) { IsBackground = true, Priority = ThreadPriority.Lowest }.Start();
 		}
 		public static void ColorLoop()

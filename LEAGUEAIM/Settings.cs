@@ -7,7 +7,7 @@ namespace LEAGUEAIM
 	{
 		public static class Product
 		{
-			public static string Version = "7-19-20240316-official-timeout";
+			public static string Version = "7-20-20240316-official-streamline";
 		}
 		public static class API
 		{

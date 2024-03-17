@@ -63,12 +63,12 @@ namespace LEAGUEAIM
 					{
 						if (ImGui.BeginTabBar("##SCRIPTS", ImGuiTabBarFlags.None))
 						{
-							if (ImGui.BeginTabItem("Quick Peek"))
-							{
-								QuickPeek.Instance.Render();
+							//if (ImGui.BeginTabItem("Quick Peek"))
+							//{
+							//	QuickPeek.Instance.Render();
 
-								ImGui.EndTabItem();
-							}
+							//	ImGui.EndTabItem();
+							//}
 
 							if (ImGui.BeginTabItem("Crosshair"))
 							{
