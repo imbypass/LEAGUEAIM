@@ -162,7 +162,7 @@ namespace Script_Engine.Cloud
 						ImGui.TextColored(
 							(SortingMethod == SortingMethods.NameAsc || SortingMethod == SortingMethods.NameDesc) ?
 								Settings.Colors.AccentColor :
-								Color.White.ToVector4(),
+								Settings.Colors.TextColor,
 							(SortingMethod == SortingMethods.NameAsc || SortingMethod == SortingMethods.NameDesc) ?
 								"[Name]" :
 								"Name"
@@ -178,7 +178,7 @@ namespace Script_Engine.Cloud
 						ImGui.TextColored(
 							(SortingMethod == SortingMethods.AuthorAsc || SortingMethod == SortingMethods.AuthorDesc) ?
 								Settings.Colors.AccentColor :
-								Color.White.ToVector4(),
+								Settings.Colors.TextColor,
 							(SortingMethod == SortingMethods.AuthorAsc || SortingMethod == SortingMethods.AuthorDesc) ?
 								"[Author]" :
 								"Author"
@@ -194,7 +194,7 @@ namespace Script_Engine.Cloud
 						ImGui.TextColored(
 							(SortingMethod == SortingMethods.TypeAsc || SortingMethod == SortingMethods.TypeDesc) ?
 								Settings.Colors.AccentColor :
-								Color.White.ToVector4(),
+								Settings.Colors.TextColor,
 							(SortingMethod == SortingMethods.TypeAsc || SortingMethod == SortingMethods.TypeDesc) ?
 								"[Type]" :
 								"Type"
@@ -210,7 +210,7 @@ namespace Script_Engine.Cloud
 						ImGui.TextColored(
 							(SortingMethod == SortingMethods.RatingAsc || SortingMethod == SortingMethods.RatingDesc) ?
 								Settings.Colors.AccentColor :
-								Color.White.ToVector4(),
+								Settings.Colors.TextColor,
 							(SortingMethod == SortingMethods.RatingAsc || SortingMethod == SortingMethods.RatingDesc) ?
 								"[Rating]" :
 								"Rating"
@@ -241,7 +241,7 @@ namespace Script_Engine.Cloud
 							ImGui.NextColumn();
 							ImGui.PushFont(Fonts.Icons);
 							ImGui.SetCursorPosY(ImGui.GetCursorPosY() + textOffset);
-							ImGui.TextColored(System.Drawing.Color.Gold.ToVector4(), IconFonts.FontAwesome6.Star);
+							ImGui.TextColored(Settings.Colors.AccentColor, IconFonts.FontAwesome6.Star);
 							ImGui.PopFont();
 							ImGui.SameLine();
 							ImGui.SetCursorPosY(ImGui.GetCursorPosY() + 2);
@@ -457,6 +457,7 @@ namespace Script_Engine.Cloud
 				if (ImGui.IsItemHovered())
 				{
 					ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+					ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 					ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 					if (ImGui.BeginTooltip())
 					{
@@ -466,6 +467,7 @@ namespace Script_Engine.Cloud
 						ImGui.EndTooltip();
 					}
 					ImGui.PopStyleVar();
+					ImGui.PopStyleColor();
 					ImGui.PopStyleColor();
 				}
 
@@ -478,6 +480,7 @@ namespace Script_Engine.Cloud
 				if (ImGui.IsItemHovered())
 				{
 					ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+					ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 					ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 					if (ImGui.BeginTooltip())
 					{
@@ -487,6 +490,7 @@ namespace Script_Engine.Cloud
 						ImGui.EndTooltip();
 					}
 					ImGui.PopStyleVar();
+					ImGui.PopStyleColor();
 					ImGui.PopStyleColor();
 				}
 
@@ -502,6 +506,7 @@ namespace Script_Engine.Cloud
 				if (ImGui.IsItemHovered())
 				{
 					ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+					ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 					ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 					if (ImGui.BeginTooltip())
 					{
@@ -511,6 +516,7 @@ namespace Script_Engine.Cloud
 						ImGui.EndTooltip();
 					}
 					ImGui.PopStyleVar();
+					ImGui.PopStyleColor();
 					ImGui.PopStyleColor();
 				}
 
@@ -523,6 +529,7 @@ namespace Script_Engine.Cloud
 				if (ImGui.IsItemHovered())
 				{
 					ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+					ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 					ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 					if (ImGui.BeginTooltip())
 					{
@@ -532,6 +539,7 @@ namespace Script_Engine.Cloud
 						ImGui.EndTooltip();
 					}
 					ImGui.PopStyleVar();
+					ImGui.PopStyleColor();
 					ImGui.PopStyleColor();
 				}
 
@@ -545,6 +553,7 @@ namespace Script_Engine.Cloud
 			ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 150, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 			ImGui.SetNextWindowSize(new(300, 110));
 			ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+			ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 			ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 			if (ImGui.BeginPopupModal("Entry Saved " + entry.Id, ref entry_saved, ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 			{
@@ -561,6 +570,7 @@ namespace Script_Engine.Cloud
 			}
 			ImGui.PopStyleVar();
 			ImGui.PopStyleColor();
+			ImGui.PopStyleColor();
 
 			cMenuPos = ImGui.GetWindowPos();
 			cMenuSize = ImGui.GetWindowSize();
@@ -568,6 +578,7 @@ namespace Script_Engine.Cloud
 			ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - (500 / 2), cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 			ImGui.SetNextWindowSize(new(500, 110));
 			ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+			ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 			ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 			if (ImGui.BeginPopupModal("Confirm Entry " + entry.Id, ref entry_prompted, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 			{
@@ -594,6 +605,7 @@ namespace Script_Engine.Cloud
 				ImGui.EndPopup();
 			}
 			ImGui.PopStyleColor();
+			ImGui.PopStyleColor();
 			ImGui.PopStyleVar();
 
 			cMenuPos = ImGui.GetWindowPos();
@@ -602,6 +614,7 @@ namespace Script_Engine.Cloud
 			ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 200, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 			ImGui.SetNextWindowSize(new(400, 110));
 			ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+			ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 			ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 			if (ImGui.BeginPopupModal("Delete Entry " + entry.Id, ref entry_delete, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 			{
@@ -626,6 +639,7 @@ namespace Script_Engine.Cloud
 				ImGui.EndPopup();
 			}
 			ImGui.PopStyleColor();
+			ImGui.PopStyleColor();
 			ImGui.PopStyleVar();
 
 			cMenuPos = ImGui.GetWindowPos();
@@ -634,6 +648,7 @@ namespace Script_Engine.Cloud
 			ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 150, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 			ImGui.SetNextWindowSize(new(300, 110));
 			ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+			ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 			ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 			if (ImGui.BeginPopupModal("Entry Shared", ref entry_shared, ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 			{
@@ -650,6 +665,7 @@ namespace Script_Engine.Cloud
 			}
 			ImGui.PopStyleVar();
 			ImGui.PopStyleColor();
+			ImGui.PopStyleColor();
 
 			cMenuPos = ImGui.GetWindowPos();
 			cMenuSize = ImGui.GetWindowSize();
@@ -657,6 +673,7 @@ namespace Script_Engine.Cloud
 			ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 150, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 			ImGui.SetNextWindowSize(new(300, 110));
 			ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+			ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 			ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 			if (ImGui.BeginPopupModal("Entry Uploaded " + entry.Id, ref entry_uploaded, ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 			{
@@ -672,6 +689,7 @@ namespace Script_Engine.Cloud
 				ImGui.EndPopup();
 			}
 			ImGui.PopStyleVar();
+			ImGui.PopStyleColor();
 			ImGui.PopStyleColor();
 
 			ImGui.NextColumn();

@@ -8,7 +8,7 @@ namespace LEAGUEAIM.Utilities
 		{
 			{
 				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "FontAwesome.ttf"),
-				$"{Settings.API.BaseUri}/assets/ai/FontAwesome.ttf"
+				$"{Settings.API.BaseUri}/fonts/FontAwesome.ttf"
 			},
 			{
 				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "ClashDisplay-Bold.ttf"),

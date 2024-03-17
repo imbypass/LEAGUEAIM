@@ -404,7 +404,7 @@ namespace LEAGUEAIM
 						if (File.Exists(file))
 							File.Delete(file);
 
-						LoadMenuColors();
+						LoadDefaultMenuStyle();
 
 						ImGui.CloseCurrentPopup();
 					}
@@ -583,6 +583,18 @@ namespace LEAGUEAIM
 
 			if (iniFile.KeyExists("BgColor", "Style"))
 				Settings.Colors.BgColor = iniFile.Read<uint>("BgColor", "Style").ToFloat4();
+		}
+		public static void LoadDefaultMenuStyle()
+		{
+			for (int i = 0; i < GetStyles().Length; i++)
+			{
+				if (GetStyles()[i] == "Default")
+				{
+					CurrentStyle = i;
+					break;
+				}
+			}
+			LoadMenuColors("Default");
 		}
 		public static void SaveKeybinds()
 		{
