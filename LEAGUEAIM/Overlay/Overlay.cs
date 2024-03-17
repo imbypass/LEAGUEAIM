@@ -510,7 +510,7 @@
                 null,
                 DriverType.Hardware,
                 DeviceCreationFlags.None,
-                new[] { FeatureLevel.Level_10_0 },
+				[FeatureLevel.Level_10_0],
                 out this.device,
                 out this.deviceContext);
             this.selfPointer = Kernel32.GetModuleHandle(null);
@@ -535,9 +535,12 @@
                 throw new Exception($"Failed to Register class of name {this.wndClass.ClassName}");
             }
 
-            WindowExStyles wexstyles = WindowExStyles.WS_EX_ACCEPTFILES | WindowExStyles.WS_EX_TOPMOST;
+            WindowExStyles wexstyles = WindowExStyles.WS_EX_ACCEPTFILES;
 
-            if (Settings.Engine.HideFromTaskbar)
+            if (Settings.Engine.IsVisible)
+                wexstyles |= WindowExStyles.WS_EX_TOPMOST;
+
+			if (Settings.Engine.HideFromTaskbar)
                 wexstyles |= WindowExStyles.WS_EX_TOOLWINDOW;
 
 

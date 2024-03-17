@@ -17,6 +17,43 @@ namespace LEAGUEAIM.Utilities
 {
 	public static class Drawing
 	{
+		public static Color Lerp(this Color A, Color B, double t) //linear interpolation
+		{
+
+			double R = (1 - t) * A.R + B.R * t;
+			double G = (1 - t) * A.G + B.G * t;
+			double BB = (1 - t) * A.B + B.B * t;
+			return Color.FromArgb((int)(255.0f), Convert.ToInt32(R), Convert.ToInt32(G), Convert.ToInt32(BB));
+		}
+
+		public static Vector4 LerpedGradientColor()
+		{
+			float Time = 0.0f;
+			Time += 0.001f;
+
+			Vector4 Color1 = new(72f / 255f, 33f / 255f, 243f / 255f, 1f);
+			Vector4 Color2 = new(0f, 255f / 255f, 255f / 255f, 1f);
+			
+			Color lerped = Color.FromArgb(255, Color1.ToColor()).Lerp(Color.FromArgb(255, Color2.ToColor()), Math.Sin(Time) * 0.5f + 0.5f);
+			return new Vector4(lerped.R / 255f, lerped.G / 255f, lerped.B / 255f, lerped.A / 255f);
+		}
+		public static void GradientBar(Vector2 start, Vector2 end)
+		{
+			ImGui.PushStyleVar(ImGuiStyleVar.WindowPadding, new Vector2(0, 0));
+			Vector2 window_pos = ImGui.GetWindowPos();
+			Vector2 relative_start = new(window_pos.X + start.X, window_pos.Y + start.Y);
+			Vector2 relative_end = new(window_pos.X + end.X, window_pos.Y + end.Y);
+
+			Vector4 lerpedColor = LerpedGradientColor();
+
+			ImGui.GetForegroundDrawList().AddRectFilled(
+				relative_start,
+				relative_end,
+				lerpedColor.ToUInt32()
+			);
+
+			ImGui.PopStyleVar();
+		}
 		public static bool ProfileIcon(string path, float diameter, int clickAction = 0)
 		{
 			ImGui.SameLine();
