@@ -115,6 +115,7 @@ namespace LEAGUEAIM
 				ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 175, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 				ImGui.SetNextWindowSize(new(350, 110));
 				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+				ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 				if (ImGui.BeginPopupModal("Interception Driver", ref driver, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 				{
@@ -140,12 +141,14 @@ namespace LEAGUEAIM
 					ImGui.EndPopup();
 				}
 				ImGui.PopStyleColor();
+				ImGui.PopStyleColor();
 				ImGui.PopStyleVar();
 
 				bool installed = true;
 				ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 175, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 				ImGui.SetNextWindowSize(new(300, 110));
 				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+				ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 				if (ImGui.BeginPopupModal("Interception Installed", ref installed, ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 				{
@@ -161,6 +164,7 @@ namespace LEAGUEAIM
 					ImGui.EndPopup();
 				}
 				ImGui.PopStyleColor();
+				ImGui.PopStyleColor();
 				ImGui.PopStyleVar();
 
 				bool taskbar = true;
@@ -169,6 +173,7 @@ namespace LEAGUEAIM
 				ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 187, cMenuPos.Y + (cMenuSize.Y / 2) - 60));
 				ImGui.SetNextWindowSize(new(375, 120));
 				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+				ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 				if (ImGui.BeginPopupModal("Taskbar Toggle", ref taskbar, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 				{
@@ -191,6 +196,7 @@ namespace LEAGUEAIM
 
 					ImGui.EndPopup();
 				}
+				ImGui.PopStyleColor();
 				ImGui.PopStyleColor();
 				ImGui.PopStyleVar();
 
@@ -222,6 +228,7 @@ namespace LEAGUEAIM
 				ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 150, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 				ImGui.SetNextWindowSize(new(300, 110));
 				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+				ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 				if (ImGui.BeginPopupModal("Settings Saved", ref saved, ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 				{
@@ -238,10 +245,13 @@ namespace LEAGUEAIM
 				}
 				ImGui.PopStyleVar();
 				ImGui.PopStyleColor();
+				ImGui.PopStyleColor();
+
 				bool loaded = true;
 				ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 150, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 				ImGui.SetNextWindowSize(new(300, 110));
 				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+				ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 				if (ImGui.BeginPopupModal("Settings Loaded", ref loaded, ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 				{
@@ -258,10 +268,13 @@ namespace LEAGUEAIM
 				}
 				ImGui.PopStyleVar();
 				ImGui.PopStyleColor();
+				ImGui.PopStyleColor();
+
 				bool acct = true;
 				ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 175, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 				ImGui.SetNextWindowSize(new(350, 110));
 				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+				ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 				if (ImGui.BeginPopupModal("Switch Account", ref acct, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 				{
@@ -287,6 +300,7 @@ namespace LEAGUEAIM
 
 					ImGui.EndPopup();
 				}
+				ImGui.PopStyleColor();
 				ImGui.PopStyleColor();
 				ImGui.PopStyleVar();
 
@@ -374,6 +388,7 @@ namespace LEAGUEAIM
 				ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 175, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 				ImGui.SetNextWindowSize(new(400, 110));
 				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+				ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 				if (ImGui.BeginPopupModal("Delete Style", ref delete_style, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 				{
@@ -403,6 +418,7 @@ namespace LEAGUEAIM
 					ImGui.EndPopup();
 				}
 				ImGui.PopStyleColor();
+				ImGui.PopStyleColor();
 				ImGui.PopStyleVar();
 
 				cMenuPos = ImGui.GetWindowPos();
@@ -411,6 +427,7 @@ namespace LEAGUEAIM
 				ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 175, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 				ImGui.SetNextWindowSize(new(400, 110));
 				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+				ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 				if (ImGui.BeginPopupModal("Upload Style", ref upload_style, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 				{
@@ -433,6 +450,7 @@ namespace LEAGUEAIM
 
 					ImGui.EndPopup();
 				}
+				ImGui.PopStyleColor();
 				ImGui.PopStyleColor();
 				ImGui.PopStyleVar();
 

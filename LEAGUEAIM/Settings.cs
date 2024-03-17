@@ -72,9 +72,9 @@ namespace LEAGUEAIM
 
 		public static class ButtonSizes
 		{
-			public static int Full = 256;
-			public static int Half = 123;
-			public static int Third = 79;
+			public static int Full = 240; //256
+			public static int Half = 115; //123
+			public static int Third = 73; //79
 		}
 	}
 }

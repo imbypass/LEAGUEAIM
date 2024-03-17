@@ -253,6 +253,7 @@ namespace LEAGUEAIM.Features
 			ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 175, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 			ImGui.SetNextWindowSize(new(350, 110));
 			ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+			ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 			ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 			if (ImGui.BeginPopupModal("Delete Pattern", ref delete_pattern, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 			{
@@ -280,6 +281,7 @@ namespace LEAGUEAIM.Features
 				ImGui.EndPopup();
 			}
 			ImGui.PopStyleColor();
+			ImGui.PopStyleColor();
 			ImGui.PopStyleVar();
 
 			cMenuPos = ImGui.GetWindowPos();
@@ -288,6 +290,7 @@ namespace LEAGUEAIM.Features
 			ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 175, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 			ImGui.SetNextWindowSize(new(350, 110));
 			ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+			ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 			ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 			if (ImGui.BeginPopupModal("Upload Pattern", ref upload_pattern, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 			{
@@ -310,6 +313,7 @@ namespace LEAGUEAIM.Features
 
 				ImGui.EndPopup();
 			}
+			ImGui.PopStyleColor();
 			ImGui.PopStyleColor();
 			ImGui.PopStyleVar();
 		}

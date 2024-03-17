@@ -167,14 +167,17 @@ namespace LEAGUEAIM.Features
 			ImGui.Separator();
 			ImGui.Text("Console");
 			string console = LEAGUEAIM.Engine.Logs.Output.SpliceText(50);
+			ImGui.PushFont(Fonts.Code);
 			ImGui.InputTextMultiline("##OUTPUT", ref console, 10000, new(ImGui.GetContentRegionAvail().X, 100), ImGuiInputTextFlags.ReadOnly);
-
+			ImGui.PopFont();
 
 			Vector2 cMenuPos = ImGui.GetWindowPos();
 			Vector2 cMenuSize = ImGui.GetWindowSize();
 			bool open = true;
 			ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 175, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 			ImGui.SetNextWindowSize(new(350, 110));
+			ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+			ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 			if (ImGui.BeginPopupModal("Delete Script", ref open, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 			{
 				string scriptName = LuaEngine.ScriptList[Settings.Lua.CurrentScript];
@@ -196,6 +199,8 @@ namespace LEAGUEAIM.Features
 
 				ImGui.EndPopup();
 			}
+			ImGui.PopStyleColor();
+			ImGui.PopStyleColor();
 
 			cMenuPos = ImGui.GetWindowPos();
 			cMenuSize = ImGui.GetWindowSize();
@@ -203,6 +208,7 @@ namespace LEAGUEAIM.Features
 			ImGui.SetNextWindowPos(new(cMenuPos.X + (cMenuSize.X / 2) - 175, cMenuPos.Y + (cMenuSize.Y / 2) - 55));
 			ImGui.SetNextWindowSize(new(350, 110));
 			ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+			ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 			ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 			if (ImGui.BeginPopupModal("Upload Script", ref upload_script, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoTitleBar))
 			{
@@ -225,6 +231,7 @@ namespace LEAGUEAIM.Features
 
 				ImGui.EndPopup();
 			}
+			ImGui.PopStyleColor();
 			ImGui.PopStyleColor();
 			ImGui.PopStyleVar();
 		}

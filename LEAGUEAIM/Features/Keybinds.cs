@@ -71,7 +71,7 @@ namespace LEAGUEAIM.Features
 			foreach (KeyValuePair<int, string> key in KeyList)
 			{
 				Keys kb = (Keys)key.Key;
-				if (kb != Keys.None && Utils.IsKeyPressedAndNotTimeout((ClickableTransparentOverlay.Win32.VK)kb))
+				if (kb != Keys.None && Utils.IsKeyPressedAndNotTimeout((VK)kb))
 				{
 					Settings.Menu.CurrentConfig = Profiles.GetProfileIndex(key.Value);
 					Profiles.LoadProfile(key.Value);
@@ -84,25 +84,25 @@ namespace LEAGUEAIM.Features
 		{
 			while (true)
 			{
-				if (MenuKeys[0] != Keys.None && Utils.IsKeyPressedAndNotTimeout((ClickableTransparentOverlay.Win32.VK)MenuKeys[0]))
+				if (MenuKeys[0] != Keys.None && Utils.IsKeyPressedAndNotTimeout((VK)MenuKeys[0], 75))
 				{
 					Settings.Engine.IsVisible = !Settings.Engine.IsVisible;
 				}
-				if (MenuKeys[1] != Keys.None && Utils.IsKeyPressedAndNotTimeout((ClickableTransparentOverlay.Win32.VK)Keybinds.MenuKeys[1], 10))
+				if (MenuKeys[1] != Keys.None && Utils.IsKeyPressedAndNotTimeout((VK)MenuKeys[1], 75))
 				{
 					Interception.Unload();
 					Environment.Exit(0);
 				}
-				if (MenuKeys[2] != Keys.None && Utils.IsKeyPressedAndNotTimeout((ClickableTransparentOverlay.Win32.VK)Keybinds.MenuKeys[2]))
+				if (MenuKeys[2] != Keys.None && Utils.IsKeyPressedAndNotTimeout((VK)MenuKeys[2], 75))
 				{
 					Recoil.Instance.Enabled = !Recoil.Instance.Enabled;
 				}
-				if (MenuKeys[3] != Keys.None && Utils.IsKeyPressedAndNotTimeout((ClickableTransparentOverlay.Win32.VK)Keybinds.MenuKeys[3]))
+				if (MenuKeys[3] != Keys.None && Utils.IsKeyPressedAndNotTimeout((VK)MenuKeys[3], 75))
 				{
 					Rapidfire.Instance.Enabled = !Rapidfire.Instance.Enabled;
 				}
 				Keybinds.Instance.Run();
-				Thread.Sleep(150);
+				Thread.Sleep(120);
 			}
 		}
 	}

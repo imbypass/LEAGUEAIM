@@ -29,6 +29,7 @@ namespace LEAGUEAIM.Utilities
 				ImGui.GetWindowDrawList().AddCircle(new(p_min.X + (diameter * 0.5f), p_min.Y + (diameter * 0.5f)), diameter * 0.5f, Settings.Colors.AccentColor.ToUInt32(), 0, 1.5f);
 				ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
 				ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+				ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 				ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 				if (ImGui.BeginItemTooltip())
 				{
@@ -41,6 +42,7 @@ namespace LEAGUEAIM.Utilities
 					ImGui.EndTooltip();
 				}
 				ImGui.PopStyleVar();
+				ImGui.PopStyleColor();
 				ImGui.PopStyleColor();
 			}
 			return ImGui.IsItemClicked();
@@ -85,6 +87,7 @@ namespace LEAGUEAIM.Utilities
 			ImGui.PopFont();
 
 			ImGui.PushStyleColor(ImGuiCol.Border, Settings.Colors.AccentColor);
+			ImGui.PushStyleColor(ImGuiCol.PopupBg, Settings.Colors.BgColor);
 			ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 1.5f);
 			if (ImGui.BeginItemTooltip())
 			{
@@ -92,6 +95,7 @@ namespace LEAGUEAIM.Utilities
 				ImGui.EndTooltip();
 			}
 			ImGui.PopStyleVar();
+			ImGui.PopStyleColor();
 			ImGui.PopStyleColor();
 		}
 		public static void ColorPicker(string label, ref Vector4 var, ImGuiCol[] style)
@@ -138,7 +142,7 @@ namespace LEAGUEAIM.Utilities
 				IconButton("...", string.Empty, size_arg, true, ImGui.GetStyle().FrameRounding, 2);
 				foreach (Keys Key in InputKeys.KeyCodes.Select(v => (Keys)v))
 				{
-					if (Utils.IsKeyPressedAndNotTimeout((VK)Key) && Key != Keys.LButton) //  && Key != Keys.LButton
+					if (Utils.IsKeyPressedAndNotTimeout((VK)Key)) //  && Key != Keys.LButton
 					{
 						if (Key == Keys.Delete)
 						{
@@ -178,7 +182,7 @@ namespace LEAGUEAIM.Utilities
 				ImGui.Button("...", size_arg);
 				foreach (Keys Key in InputKeys.KeyCodes.Select(v => (Keys)v))
 				{
-					if (Win32.User32.GetAsyncKeyState(Key) && Key != Keys.LButton)
+					if (Utils.IsKeyPressedAndNotTimeout((VK)Key))
 					{
 						if (Key == Keys.Delete)
 						{

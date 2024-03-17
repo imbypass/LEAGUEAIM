@@ -105,6 +105,7 @@ namespace LEAGUEAIM
 		{ 
 			ImGuiStylePtr style = ImGui.GetStyle();
 
+			style.Colors[(int)ImGuiCol.TextSelectedBg] = Settings.Colors.AccentColor;
 			style.Colors[(int)ImGuiCol.ChildBg] = new Vector4(Settings.Colors.BgColor.X, Settings.Colors.BgColor.Y, Settings.Colors.BgColor.Z, 0.4f);
 			style.Colors[(int)ImGuiCol.Border] = Colors.Black.ToVector4();
 			style.Colors[(int)ImGuiCol.CheckMark] = Settings.Colors.AccentColor;

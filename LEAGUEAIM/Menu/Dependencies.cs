@@ -7,18 +7,6 @@ namespace LEAGUEAIM.Utilities
 		private static readonly Dictionary<string, string> Assets = new()
 		{
 			{
-				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "Rubik.ttf"),
-				$"{Settings.API.BaseUri}/assets/ai/Rubik.ttf"
-			},
-			{
-				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "Poppins.ttf"),
-				$"{Settings.API.BaseUri}/assets/ai/Poppins.ttf"
-			},
-			{
-				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "SharpGrotesk.ttf"),
-				$"{Settings.API.BaseUri}/assets/ai/SharpGrotesk.ttf"
-			},
-			{
 				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "FontAwesome.ttf"),
 				$"{Settings.API.BaseUri}/assets/ai/FontAwesome.ttf"
 			},
@@ -29,6 +17,10 @@ namespace LEAGUEAIM.Utilities
 			{
 				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "ClashDisplay-Semibold.ttf"),
 				$"{Settings.API.BaseUri}/fonts/ClashDisplay-Semibold.ttf"
+			},
+			{
+				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "FiraCode.ttf"),
+				$"{Settings.API.BaseUri}/fonts/FiraCode.ttf"
 			},
 		};
 		public static void Run()
