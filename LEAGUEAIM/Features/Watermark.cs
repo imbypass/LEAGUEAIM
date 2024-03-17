@@ -34,6 +34,7 @@ namespace LEAGUEAIM.Features
 				if (Settings.Lua.Enabled && Settings.Lua.CurrentScript >= 0)
 					overlayText += $"{delimitor}{Settings.Lua.ScriptName}";
 
+				ImGui.PushFont(Fonts.MenuSm);
 				float textWidth = ImGui.CalcTextSize(overlayText).X;
 
 				ImDrawListPtr drawList = ImGui.GetBackgroundDrawList();
@@ -45,6 +46,7 @@ namespace LEAGUEAIM.Features
 
 				drawList.AddRect(new Vector2(5, 5), new Vector2(textWidth + 30, drawHeight), new Vector4(0, 0, 0, 0.5f).ToUInt32(), rounding, ImDrawFlags.RoundCornersAll, 1.0f);
 				drawList.AddText(new Vector2(18, 10), ImGui.ColorConvertFloat4ToU32(Settings.Colors.TextColor), overlayText);
+				ImGui.PopFont();
 			}
 		}
 

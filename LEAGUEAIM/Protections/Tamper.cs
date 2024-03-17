@@ -36,8 +36,8 @@ namespace LEAGUEAIM.Protections
 		{
 			Logger.DebugLine("Cleaning up protections module..");
 
-			AntiDllInjection.PatchLoadLibraryA();
-			AntiDllInjection.BinaryImageSignatureMitigationAntiDllInjection();
+			//AntiDllInjection.PatchLoadLibraryA();
+			//AntiDllInjection.BinaryImageSignatureMitigationAntiDllInjection();
 			AntiDebug.DebugBreakAntiDebug();
 		}
 

@@ -20,16 +20,16 @@ namespace LEAGUEAIM.Utilities
 			{
 				bool res = renderer.ReplaceFont(config =>
 				{
-					string menuFontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "Poppins.ttf");
-					string headerFontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "SharpGrotesk.ttf");
+					string menuFontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "ClashDisplay-Semibold.ttf");
+					string headerFontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "ClashDisplay-Bold.ttf");
 					string iconFontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "FontAwesome.ttf");
 					ushort[] customRange = [IconFonts.FontAwesome6.IconMin, IconFonts.FontAwesome6.IconMax, 0];
 					var io = ImGui.GetIO();
 
 
 					if (File.Exists(menuFontPath)) {
-						Menu = io.Fonts.AddFontFromFileTTF(menuFontPath, 16, config, io.Fonts.GetGlyphRangesDefault());
-						MenuSm = io.Fonts.AddFontFromFileTTF(menuFontPath, 13, config, io.Fonts.GetGlyphRangesDefault());
+						Menu = io.Fonts.AddFontFromFileTTF(menuFontPath, 15, config, io.Fonts.GetGlyphRangesDefault());
+						MenuSm = io.Fonts.AddFontFromFileTTF(menuFontPath, 14, config, io.Fonts.GetGlyphRangesDefault());
 						MenuLg = io.Fonts.AddFontFromFileTTF(menuFontPath, 18, config, io.Fonts.GetGlyphRangesDefault());
 					}
 
@@ -42,7 +42,7 @@ namespace LEAGUEAIM.Utilities
 						}
 
 					if (File.Exists(headerFontPath))
-						Header = io.Fonts.AddFontFromFileTTF(headerFontPath, 30, config, io.Fonts.GetGlyphRangesDefault());
+						Header = io.Fonts.AddFontFromFileTTF(headerFontPath, 36, config, io.Fonts.GetGlyphRangesDefault());
 				});
 
 				Fonts.Replaced = true;

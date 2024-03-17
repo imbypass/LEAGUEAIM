@@ -88,7 +88,7 @@ namespace LEAGUEAIM.Features
 				{
 					Settings.Engine.IsVisible = !Settings.Engine.IsVisible;
 				}
-				if (MenuKeys[1] != Keys.None && Utils.IsKeyPressedAndNotTimeout((ClickableTransparentOverlay.Win32.VK)Keybinds.MenuKeys[1]))
+				if (MenuKeys[1] != Keys.None && Utils.IsKeyPressedAndNotTimeout((ClickableTransparentOverlay.Win32.VK)Keybinds.MenuKeys[1], 10))
 				{
 					Interception.Unload();
 					Environment.Exit(0);

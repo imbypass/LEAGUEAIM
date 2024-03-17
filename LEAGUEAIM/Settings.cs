@@ -7,7 +7,7 @@ namespace LEAGUEAIM
 	{
 		public static class Product
 		{
-			public static string Version = "7-14-20240309-official-hodor";
+			public static string Version = "7-19-20240316-official-timeout";
 		}
 		public static class API
 		{

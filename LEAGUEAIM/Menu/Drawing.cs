@@ -1,4 +1,5 @@
-﻿using ImGuiNET;
+﻿using ClickableTransparentOverlay.Win32;
+using ImGuiNET;
 using LEAGUEAIM.Features;
 using LEAGUEAIM.Win32;
 using Script_Engine.Cloud;
@@ -137,31 +138,24 @@ namespace LEAGUEAIM.Utilities
 				IconButton("...", string.Empty, size_arg, true, ImGui.GetStyle().FrameRounding, 2);
 				foreach (Keys Key in InputKeys.KeyCodes.Select(v => (Keys)v))
 				{
-					if (User32.GetAsyncKeyState(Key) && Key != Keys.LButton) //  && Key != Keys.LButton
+					if (Utils.IsKeyPressedAndNotTimeout((VK)Key) && Key != Keys.LButton) //  && Key != Keys.LButton
 					{
-						if (!QuickPeek.KeyAlreadyUsed(Key) && !Rapidfire.KeyAlreadyUsed(Key))
+						if (Key == Keys.Delete)
 						{
-							if (Key == Keys.Delete)
-							{
-								key = Keys.None;
-								Engine.WaitingForKey[(int)key] = false;
-								Engine.CapturedInput = true;
-							}
-							else if (Key == Keys.Escape)
-							{
-								Engine.WaitingForKey[(int)key] = false;
-								Engine.CapturedInput = true;
-							}
-							else
-							{
-								key = Key;
-								Engine.WaitingForKey[(int)key] = false;
-								Engine.CapturedInput = true;
-							}
+							key = Keys.None;
+							Engine.WaitingForKey[(int)key] = false;
+							Engine.CapturedInput = true;
+						}
+						else if (Key == Keys.Escape)
+						{
+							Engine.WaitingForKey[(int)key] = false;
+							Engine.CapturedInput = true;
 						}
 						else
 						{
-							MessageBox.Show("Key already in use. Please select another key.", "LEAGUEAIM", MessageBoxButtons.OK);
+							key = Key;
+							Engine.WaitingForKey[(int)key] = false;
+							Engine.CapturedInput = true;
 						}
 					}
 				}
