@@ -4,7 +4,14 @@ using SharpDX;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using LEAGUEAIM.Utilities;
+using System.Collections.Specialized;
 using System.Drawing.Imaging;
+using System.Net;
 using Script_Engine.Utilities;
 
 namespace LEAGUEAIM.Protections
@@ -29,8 +36,8 @@ namespace LEAGUEAIM.Protections
 		{
 			Logger.DebugLine("Cleaning up protections module..");
 
-			//AntiDllInjection.PatchLoadLibraryA();
-			//AntiDllInjection.BinaryImageSignatureMitigationAntiDllInjection();
+			AntiDllInjection.PatchLoadLibraryA();
+			AntiDllInjection.BinaryImageSignatureMitigationAntiDllInjection();
 			AntiDebug.DebugBreakAntiDebug();
 		}
 

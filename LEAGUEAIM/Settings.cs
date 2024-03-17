@@ -7,7 +7,7 @@ namespace LEAGUEAIM
 	{
 		public static class Product
 		{
-			public static string Version = "7-17-20240316-official-clashgrotesk";
+			public static string Version = "7-14-20240309-official-hodor";
 		}
 		public static class API
 		{
@@ -72,9 +72,9 @@ namespace LEAGUEAIM
 
 		public static class ButtonSizes
 		{
-			public static int Full = 240; //256
-			public static int Half = 115; //123
-			public static int Third = 73; //79
+			public static int Full = 256;
+			public static int Half = 123;
+			public static int Third = 79;
 		}
 	}
 }

@@ -21,15 +21,7 @@ namespace LEAGUEAIM.Utilities
 			{
 				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "FontAwesome.ttf"),
 				$"{Settings.API.BaseUri}/assets/ai/FontAwesome.ttf"
-			},
-			{
-				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "ClashDisplay-Bold.ttf"),
-				$"{Settings.API.BaseUri}/fonts/ClashDisplay-Bold.ttf"
-			},
-			{
-				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LEAGUEAIM", "fonts", "ClashDisplay-Semibold.ttf"),
-				$"{Settings.API.BaseUri}/fonts/ClashDisplay-Semibold.ttf"
-			},
+			} 
 		};
 		public static void Run()
 		{
