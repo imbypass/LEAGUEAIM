@@ -74,7 +74,14 @@ namespace LEAGUEAIM.Features
 			}
 
 			if (config.KeyExists("RecoilType", "Recoil")) Recoil.RecoilType = config.Read<int>("RecoilType", "Recoil");
-			if (config.KeyExists("RecoilPattern", "Recoil")) Recoil.Pattern.PatternName = config.Read<string>("RecoilPattern", "Recoil");
+
+			try
+			{
+				if (config.KeyExists("RecoilPattern", "Recoil")) Recoil.Pattern.PatternName = config.Read<string>("RecoilPattern", "Recoil");
+			} catch
+			{
+
+			}
 
 			if (Recoil.Pattern.PatternName != null)
 				Recoil.Pattern.CurrentPattern = Recoil.GetPatternIndex(Recoil.Pattern.PatternName);
@@ -103,8 +110,6 @@ namespace LEAGUEAIM.Features
 			if (!int.TryParse(keybind, out int key)) Rapidfire.KeyActivation = (Keys)InputKeys.KeyCodeFromName(keybind);
 			else Rapidfire.KeyActivation = (Keys)key;
 
-			if (config.KeyExists("AutoNade", "Extras")) AutoNade.Instance.Enabled = config.Read<bool>("AutoNade", "Extras");
-			if (config.KeyExists("NadeCookTime", "Extras")) AutoNade.TimeDelay = config.Read<float>("NadeCookTime", "Extras");
 			if (config.KeyExists("QuickPeek", "Extras")) QuickPeek.Instance.Enabled = config.Read<bool>("QuickPeek", "Extras");
 
 			// attempt to load quickpeek settings
@@ -170,7 +175,11 @@ namespace LEAGUEAIM.Features
 			config.Write("InvertX", false.ToString(), "Recoil");
 			config.Write("InvertY", false.ToString(), "Recoil");
 			config.Write("RecoilType", Recoil.RecoilType.ToString(), "Recoil");
-			config.Write("RecoilPattern", Recoil.GetPatterns()[Recoil.Pattern.CurrentPattern].ToString(), "Recoil");
+			try
+			{
+				config.Write("RecoilPattern", Recoil.GetPatterns()[Recoil.Pattern.CurrentPattern].ToString(), "Recoil");
+			}
+			catch { }
 			config.Write("PatternMultiplierX", Recoil.Pattern.XMultiplier.ToString(), "Recoil");
 			config.Write("PatternMultiplierY", Recoil.Pattern.YMultiplier.ToString(), "Recoil");
 
@@ -189,11 +198,10 @@ namespace LEAGUEAIM.Features
 			config.Write("JitterY", Jitter.VerticalStrength.ToString(), "Jitter");
 			config.Write("SleepTime", Jitter.TimeSleep.ToString(), "Jitter");
 
-			config.Write("AutoNade", AutoNade.Instance.Enabled.ToString(), "Extras");
-			config.Write("NadeCookTime", AutoNade.TimeDelay.ToString(), "Extras");
 			config.Write("QuickPeek", QuickPeek.Instance.Enabled.ToString(), "Extras");
 			config.Write("QuickPeekDelayIn", QuickPeek.DelayIn.ToString(), "Extras");
 			config.Write("QuickPeekDelayOut", QuickPeek.DelayOut.ToString(), "Extras");
+
 
 			config.Write("ENABLED", Crosshair.Instance.Enabled.ToString(), "CROSSHAIR");
 			config.Write("SHOWONADS", Crosshair.ShowOnADS.ToString(), "CROSSHAIR");
@@ -204,13 +212,17 @@ namespace LEAGUEAIM.Features
 			config.Write("TOP", Crosshair.DrawTop.ToString(), "CROSSHAIR");
 			config.Write("DOT", Crosshair.CenterDot.ToString(), "CROSSHAIR");
 			config.Write("DOTSIZE", Crosshair.DotSize.ToString(), "CROSSHAIR");
+			try
+			{
+				config.Write("RAINBOW", Crosshair.UseAccent.ToString(), "CROSSHAIR");
+			}
+			catch { }
 			Vector4 cCol = Settings.Colors.CrosshairColor;
 			config.Write("COLOR_R", cCol.X.ToString(), "CROSSHAIR");
 			config.Write("COLOR_G", cCol.Y.ToString(), "CROSSHAIR");
 			config.Write("COLOR_B", cCol.Z.ToString(), "CROSSHAIR");
 			config.Write("ALPHA", cCol.W.ToString(), "CROSSHAIR");
 			config.Write("STYLE", Crosshair.Style.ToString(), "CROSSHAIR");
-			config.Write("RAINBOW", Crosshair.UseAccent.ToString(), "CROSSHAIR");
 		}
 		private static void CreateProfile(string name)
 		{
@@ -264,8 +276,9 @@ namespace LEAGUEAIM.Features
 			{
 				if (Settings.Menu.CurrentConfig > -1)
 				{
-					Profiles.CurrentProfile = Profiles.ProfileList[Settings.Menu.CurrentConfig].Replace(".ini", "");
-					Profiles.SaveProfile(Profiles.CurrentProfile);
+					CurrentProfile = ProfileList[Settings.Menu.CurrentConfig].Replace(".ini", "");
+					if (CurrentProfile != null)
+						SaveProfile(CurrentProfile);
 				}
 			}
 			if (Drawing.IconButton("Send to Cloud", IconFonts.FontAwesome6.Upload, new(Settings.ButtonSizes.Full, 28), true, ImGui.GetStyle().FrameRounding, 0))
