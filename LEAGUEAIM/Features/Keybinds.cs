@@ -1,4 +1,6 @@
-﻿using ImGuiNET;
+﻿using ClickableTransparentOverlay;
+using ClickableTransparentOverlay.Win32;
+using ImGuiNET;
 using LEAGUEAIM.Utilities;
 using LEAGUEAIM.Win32;
 using Script_Engine.Utilities;
@@ -68,7 +70,8 @@ namespace LEAGUEAIM.Features
 
 			foreach (KeyValuePair<int, string> key in KeyList)
 			{
-				if (User32.GetAsyncKeyState((Keys)(key.Key)))
+				Keys kb = (Keys)key.Key;
+				if (kb != Keys.None && Utils.IsKeyPressedAndNotTimeout((ClickableTransparentOverlay.Win32.VK)kb))
 				{
 					Settings.Menu.CurrentConfig = Profiles.GetProfileIndex(key.Value);
 					Profiles.LoadProfile(key.Value);
@@ -81,20 +84,20 @@ namespace LEAGUEAIM.Features
 		{
 			while (true)
 			{
-				if (User32.GetAsyncKeyState(Keybinds.MenuKeys[0]))
+				if (MenuKeys[0] != Keys.None && Utils.IsKeyPressedAndNotTimeout((ClickableTransparentOverlay.Win32.VK)MenuKeys[0]))
 				{
 					Settings.Engine.IsVisible = !Settings.Engine.IsVisible;
 				}
-				if (User32.GetAsyncKeyState(Keybinds.MenuKeys[1]))
+				if (MenuKeys[1] != Keys.None && Utils.IsKeyPressedAndNotTimeout((ClickableTransparentOverlay.Win32.VK)Keybinds.MenuKeys[1]))
 				{
 					Interception.Unload();
 					Environment.Exit(0);
 				}
-				if (User32.GetAsyncKeyState(Keybinds.MenuKeys[2]))
+				if (MenuKeys[2] != Keys.None && Utils.IsKeyPressedAndNotTimeout((ClickableTransparentOverlay.Win32.VK)Keybinds.MenuKeys[2]))
 				{
 					Recoil.Instance.Enabled = !Recoil.Instance.Enabled;
 				}
-				if (User32.GetAsyncKeyState(Keybinds.MenuKeys[3]))
+				if (MenuKeys[3] != Keys.None && Utils.IsKeyPressedAndNotTimeout((ClickableTransparentOverlay.Win32.VK)Keybinds.MenuKeys[3]))
 				{
 					Rapidfire.Instance.Enabled = !Rapidfire.Instance.Enabled;
 				}
