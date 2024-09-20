@@ -21,12 +21,6 @@ namespace LEAGUEAIM
 		{
 			Logger.Initialize();
 
-			AntiTamper.PreLaunch();
-
-			Functions.CreateUrlScheme();
-
-			Functions.CheckForImport(args);
-
 			Functions.CheckElevated();
 
 			MenuSettings.LoadMenuSettings();
@@ -64,14 +58,6 @@ namespace LEAGUEAIM
 			Engine.StartHotkeys();
 
 			LARenderer.ApplyStyle();
-
-			new Thread(new ThreadStart(LoginHelper.Loop))
-			{
-				IsBackground = true,
-				Priority = ThreadPriority.Lowest
-			}.Start();
-
-			AntiTamper.PostLaunch();
 		}
 	}
 }
