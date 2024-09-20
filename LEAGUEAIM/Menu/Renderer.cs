@@ -26,8 +26,6 @@ namespace LEAGUEAIM
 
 			LuaEngine.ScriptList = LuaEngine.GetScriptList();
 
-			LoginHelper.Render();
-
 			Menu.Render();
 
 			CloudMenu.Render();
