@@ -18,7 +18,7 @@ namespace LEAGUEAIM
     internal class LoginHelper
     {
         public static bool IsSaved = false;
-        public static bool IsReady = false;
+        public static bool IsReady = true;
         public static string Username;
         public static string Password;
         public static string Response;
