@@ -13,8 +13,6 @@ namespace LEAGUEAIM
 		public static Vector2 Size = new();
 		public static void Render()
 		{
-			if (!LoginHelper.IsReady) return;
-
 			LARenderer.ApplyAccentColor();
 
 			if (!Settings.Engine.IsVisible) return;
