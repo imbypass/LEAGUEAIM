@@ -11,9 +11,9 @@ namespace LEAGUEAIM
 		}
 		public static class API
 		{
-			public static string BaseUri = "http://auth.leagueaim.gg";
-			public static string ClientId = "tqBLp7ee1D";
-			public static string ClientSecret = "bPvRxhqYRiKATD2";
+			public static string BaseUri = "";
+			public static string ClientId = "";
+			public static string ClientSecret = "";
 		}
 		public static class Engine
 		{
