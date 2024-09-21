@@ -23,7 +23,6 @@ namespace LEAGUEAIM
 				Size = ImGui.GetWindowSize();
 
 				Drawing.TextHeader("LEAGUEAIM", 2f, 5);
-				Drawing.ProfileIcon("https://imbypass.pw/logo_round.png", 36.0f);
 
 				ImGui.Spacing();
 
