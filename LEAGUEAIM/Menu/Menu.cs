@@ -23,8 +23,7 @@ namespace LEAGUEAIM
 				Size = ImGui.GetWindowSize();
 
 				Drawing.TextHeader("LEAGUEAIM", 2f, 5);
-				if (Drawing.ProfileIcon(Settings.Engine.AvatarPath, 36.0f))
-					CloudMenu.Enabled = !CloudMenu.Enabled;
+				Drawing.ProfileIcon("https://imbypass.pw/logo_round.png", 36.0f)
 
 				ImGui.Spacing();
 
