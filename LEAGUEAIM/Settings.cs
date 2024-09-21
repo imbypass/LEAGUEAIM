@@ -7,11 +7,11 @@ namespace LEAGUEAIM
 	{
 		public static class Product
 		{
-			public static string Version = "7-20-20240316-official-streamline";
+			public static string Version = "7-20-20240921-final";
 		}
 		public static class API
 		{
-			public static string BaseUri = "";
+			public static string BaseUri = "https://imbypass.pw/";
 			public static string ClientId = "";
 			public static string ClientSecret = "";
 		}
