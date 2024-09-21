@@ -56,6 +56,7 @@ namespace LEAGUEAIM
 			Renderer.Size = ScreenSize;
 
 			Engine.StartHotkeys();
+			Engine.StartThreads();
 
 			LARenderer.ApplyStyle();
 		}
